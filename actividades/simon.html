@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            width: 1600px;
+            height: 520px;
+            background-color: white;
+        }
+
+        .redonda {
+            display: flex;
+            flex-wrap: wrap;
+            width: 500px;
+            height: 500px;
+            border: 5px solid black;
+            border-radius: 100%;
+            cursor: pointer;
+            background-color: black;
+        }
+
+        #rojo {
+            width: 243px;
+            height: 243px;
+            border: 3px solid black;
+            border-top-left-radius: 100%;
+        }
+
+        #rojo:hover {
+            background-color: red;
+        }
+
+        #verde {
+            width: 243px;
+            height: 243px;
+            border: 3px solid black;
+            border-top-right-radius: 100%;
+        }
+
+        #verde:hover {
+            background-color: green;
+        }
+
+        #azul {
+            width: 243px;
+            height: 243px;
+            border: 3px solid black;
+            border-bottom-left-radius: 100%;
+        }
+
+        #azul:hover {
+            background-color: blue;
+        }
+
+        #amarillo {
+            width: 243px;
+            height: 243px;
+            border: 3px solid black;
+            border-bottom-right-radius: 100%;
+        }
+
+        #amarillo:hover {
+            background-color: yellow;
+        }
+
+        .pulsador {
+            position: absolute;
+            top: 110px;
+            left: 655px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 300px;
+            height: 300px;
+            background-color: black;
+            color: white;
+            border-radius: 100%;
+        }
+
+        .red {
+            background-color: rgb(204, 78, 78);
+        }
+
+        .goodred {
+            background-color: red;
+        }
+
+        .green {
+            background-color: lightgreen;
+        }
+
+        .goodgreen {
+            background-color: green;
+        }
+
+        .blue {
+            background-color: rgb(76, 175, 237);
+        }
+
+        .goodblue {
+            background-color: blue;
+        }
+
+        .yellow {
+            background-color: rgb(204, 204, 95);
+        }
+
+        .goodyellow {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="redonda">
+        <div class="red" id="rojo" onclick="select('rojo')"></div>
+        <div class="green" id="verde" onclick="select('verde')"></div>
+        <div class="blue" id="azul" onclick="select('azul')"></div>
+        <div class="yellow" id="amarillo" onclick="select('amarillo')"></div>
+        <div class="pulsador" id="pulsador" onclick="resolver()">
+            <h1>SIMON</h1>
+        </div>
+    </div>
+
+</body>
+<script>
+    let solucion = [];
+    let respuesta = [];
+    let turno = 4;
+    let index = 0;
+
+    function random() {
+
+        const colores = ['rojo', 'azul', 'verde', 'amarillo'];
+        const colores2 = ['red', 'blue', 'green', 'yellow'];
+        const coloresP = ['goodred', 'goodblue', 'goodgreen', 'goodyellow'];
+
+        let i = 0; // Inicializa el contador
+        const delay = 1000; // Tiempo de espera en milisegundos (1 segundo)
+
+        function cambiarClase() {
+            function devolverClase() {
+                clases = div.classList;
+                div.classList.remove(clases[0]);
+                div.classList.add(colores2[random]);
+            }
+
+            let random = Math.floor(Math.random() * 4);
+            let div = document.getElementById(colores[random]);
+            let clases = div.classList;
+            solucion[i] = clases[0];
+            div.classList.remove(clases[0]);
+            div.classList.add(coloresP[random]);
+            console.log(solucion);
+
+            setTimeout(devolverClase, delay - 100);
+
+            i++; // Incrementa el contador
+
+            if (i < turno) {
+                // Si no hemos terminado, programa la siguiente ejecución después del retraso
+                setTimeout(cambiarClase, delay);
+            }
+        }
+        cambiarClase(); // Inicia el proceso
+    }
+
+    function select(id) {
+        let div = document.getElementById(id);
+        let clases = div.classList;
+        respuesta[index] = clases[0];
+        index++;
+        //console.log(respuesta);
+        if (index == turno && turno != null) {
+            index = 0;
+        }
+    }
+
+    function resolver() {
+        if (solucion[0] == null) {
+            random();
+        } else {
+            let puntos = 0;
+            let meta = 4;
+            for (let i = 0; i < meta; i++) {
+                if (solucion[i] == respuesta[i] && respuesta[i] != null) {
+                    puntos++;
+                }
+                if (puntos == meta) {
+                    alert('Has ganado!');
+                    //document.getElementById('pulsador').removeEventListener('click', random);
+                    //document.getElementById('pulsador').setAttribute('onclick', 'resolver();');
+                    for (let j = 0; j < 4; j++) {
+                        solucion[j] = null;
+                        respuesta[j] = null;
+                    }
+                    //puntos = 0;
+                    turno++;
+                    random();
+                }
+            }
+            meta++;
+        }
+    }
+</script>
+
+</html>

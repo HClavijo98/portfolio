@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="pelicula.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pickadate/lib/themes/default.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pickadate/lib/themes/default.date.css">
+    <script src="https://cdn.jsdelivr.net/npm/pickadate/lib/picker.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pickadate/lib/picker.date.js"></script>
+    <script src="Plugins/jquery.magnific-popup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="Plugins/magnific-popup.css">
+    <link rel="stylesheet" href="clases.css">
+    <title>Peliculas</title>
+</head>
+<header>
+    <img src="img/camara.png" alt="logo" id="logo">
+    <h1>MOVIES</h1>
+    <nav>
+        <div id="home"><img src="img/home.png" alt="home">Home</div>
+        <div id="login"><img src="img/login.png" alt="login">Login</div>
+    </nav>
+</header>
+
+<body>
+    <div id="user">
+        <h2>User:</h2>
+        <p></p>
+    </div>
+    <div id="formLogin">
+        <h2>Inicio de Sesion</h2>
+        <ul>
+            <li>Nombre: <input type="text" name="nombre" id="nombre"></li>
+            <li>Fecha de nacimiento: <input type="text" class="datepicker" id="datepicker" name="datepicker"></li>
+        </ul>
+        <button id="accept">Aceptar</button><button id="cancel">Cancelar</button>
+    </div>
+    <div id="profile">
+        <h2>Perfil</h2>
+        <ul>
+            <li id="p1"></li>
+            <li id="p2"></li>
+            <li id="p3"></li>
+        </ul>
+        <button id="logOut">Desconectar</button><button id="cancel2">Cancelar</button>
+    </div>
+    <figure class="peliculas">
+    </figure>
+
+</body>
+<footer>
+
+</footer>
+<script>
+    $(document).ready(function () {
+        function calcularEdad() {
+            // Obtener la fecha de nacimiento del campo de Pickadate
+            var fechaNacimiento = picker.get('select');
+
+            // Verificar si se seleccionó una fecha
+            if (fechaNacimiento) {
+                // Obtener la fecha actual
+                var fechaActual = new Date();
+
+                // Calcular la diferencia de años
+                var edad = fechaActual.getFullYear() - fechaNacimiento.year;
+
+                // Mostrar la edad en algún lugar de la página
+                return edad;
+            }
+        }
+        function watchMovie() {
+            if (user[0] != '') {
+                for (let pelicula of peliculas) {
+                    let clase = '#' + pelicula.id;
+                    $(clase).magnificPopup({
+                        items: {
+                            src: pelicula.link
+                        },
+                        type: 'iframe'
+                    });
+                }
+            } else {
+                $('.pelicula').magnificPopup({
+                    items: {
+                        src: $(`<div id="needLogin">
+                            <h2>Es necesario iniciar sesion.</h2>
+                            <p>Para disfrutar del contenido multimedia debes iniciar sesion con tus datos.</p>
+                            </div>`),
+                        type: 'inline'
+                    }
+                });
+            }
+        }
+        function checkLogin() {
+            if (user[0] != '') {
+                $('#login').off('click');
+                $('#login').click(function () {
+                    $('#profile').fadeIn();
+                })
+            } else {
+                $('#login').off('click');
+                $('#login').click(function () {
+                    $('#formLogin').fadeIn();
+                })
+            }
+        }
+        function info() {
+            for (let pelicula of peliculas) {
+                let clase = '#' + pelicula.id;
+                $(clase).tooltip({
+                    placement: 'top',  // Coloca el tooltip encima del elemento
+                    trigger: 'hover',    // Muestra el tooltip al pasar el ratón sobre el elemento
+                    delay: { show: 500, hide: 200 },  // Agrega un pequeño retraso
+                    html: true,  //Indica que el apartado title puede usar sintaxis html
+                    title: function () {
+                        return `<strong>` + pelicula.titulo + ` (` + pelicula.año + `) +` + pelicula.categoria + `</strong>
+                        <p>`+ pelicula.descripcion + `</p>`;
+                    }
+                });
+            }
+        }
+
+        let user = ['', ''];
+        const movie = new Pelicula('avatar', 'Avatar', `Es una épica de ciencia ficción que sigue la historia de Jake Sully,<br> 
+                un ex-marine parapléjico que participa en el programa Avatar en el planeta Pandora.<br>
+                Allí, se enamora de la cultura nativa Na'vi y se ve envuelto en un conflicto entre la explotación<br> 
+                humana y la conexión espiritual con la naturaleza. Con efectos visuales revolucionarios,<br>
+                la película aborda temas de ecología y explotación.`,
+            2009, 13, 'https://www.youtube.com/watch?v=5PSNL1qE6VY');
+        const movie2 = new Pelicula('it2', 'It Chapter Two', `Es la secuela de la película de terror basada en la novela de Stephen King.<br> 
+                Dirigida por Andy Muschietti, sigue a los miembros del Club de los Perdedores,<br> 
+                ahora adultos, que regresan a Derry para enfrentar nuevamente a Pennywise,<br> 
+                el aterrador payaso. La película explora traumas del pasado y culmina en una<br> 
+                confrontación final con el mal ancestral.`,
+            2019, 18, 'https://www.youtube.com/watch?v=xhJ5P7Up3jA');
+        const movie3 = new Pelicula('ratatouille', 'Ratatouille', `Narra la historia de Remy, una rata con un sofisticado paladar y aspiraciones culinarias.<br>
+                Intrépido, Remy se embarca en una aventura para convertirse en chef en París,<br>
+                desafiando estereotipos y demostrando que la verdadera habilidad no conoce límites.`,
+            2007, 8, 'https://www.youtube.com/watch?v=-tNqfcZKn6k');
+        const movie4 = new Pelicula('avengers', 'Avengers', `Es un épico filme de superhéroes que fusiona los icónicos personajes de Marvel,<br>
+                como Iron Man, Thor y Hulk, para combatir las maquinaciones de Loki. La película<br>
+                destaca la formación del equipo de los Vengadores, explorando las dinámicas entre los héroes,<br>
+                con intensas secuencias de acción y efectos visuales espectaculares, marcando el inicio<br>
+                del Universo Cinematográfico de Marvel.`,
+            2012, 8, 'https://www.youtube.com/watch?v=hA6hldpSTF8');
+        const movie5 = new Pelicula('starwars', 'Star Wars: The Rise of Skywalker', `Concluye la trilogía secuela, siguiendo la lucha final entre la Resistencia y la Primera Orden.<br>
+                Dirigida por J.J. Abrams, la película aborda el destino de Rey, el regreso de Palpatine<br>
+                y la redención de Kylo Ren, cerrando la saga Skywalker.`,
+            2019, 13, 'https://www.youtube.com/watch?v=8Qn_spdM5Zg');
+        const movie6 = new Pelicula('antman', 'Ant-Man', `Sigue a Scott Lang, un ladrón redimido, quien adquiere un traje que le permite encogerse y controlar hormigas.<br>
+                Dirigida por Peyton Reed, la película combina acción y humor mientras Lang, interpretado por Paul Rudd,<br>
+                se convierte en el héroe Ant-Man para robar un peligroso invento.`,
+            2015, 13, 'https://www.youtube.com/watch?v=IEVE3KSKQ0o');
+        const movie7 = new Pelicula('harrypotter', 'Harry Potter y la Orden del Fénix', `Sigue a Harry mientras enfrenta la negación del Ministerio de Magia sobre el regreso de Lord Voldemort.<br>
+                Dirigida por David Yates, la película destaca la formación de la Orden del Fénix y el enfrentamiento<br>
+                entre Harry y sus amigos contra las fuerzas oscuras.`,
+            2007, 13, 'https://www.youtube.com/watch?v=WIj9DYJ5EKk');
+        const movie8 = new Pelicula('johnwick', 'John Wick: Chapter 2', `Sigue al letal ex asesino, John Wick, quien se ve obligado a cumplir un contrato y enfrentarse<br>
+                a una red de asesinos en Roma. Dirigida por Chad Stahelski, la película intensifica la acción,<br>
+                explorando el submundo del crimen y expandiendo el universo del personaje.`,
+            2017, 18, 'https://www.youtube.com/watch?v=LZrX9mffH8Y');
+        const movie9 = new Pelicula('et', 'E.T. the Extra-Terrestrial', `Dirigida por Steven Spielberg, cuenta la emotiva historia de amistad entre un niño llamado Elliott<br>
+                y un extraterrestre. La película explora la conexión especial entre humanos y seres de otro mundo<br>
+                mientras intentan ayudar a E.T. a regresar a su hogar.`,
+            1982, 8, 'https://www.youtube.com/watch?v=DSx8Jobx-Gs');
+        const movie10 = new Pelicula('gladiator', 'Gladiator', `Dirigida por Ridley Scott, es un épico drama histórico que sigue la historia del general romano Máximo,<br>
+                traicionado y convertido en esclavo, quien busca venganza en el Coliseo. Protagonizada por Russell Crowe,<br>
+                la película combina acción impresionante, intriga política y emotivas narrativas, ganando elogios<br>
+                por su espectacularidad y actuaciones.`,
+            2000, 18, 'https://www.youtube.com/watch?v=P5ieIbInFpg');
+        const movie11 = new Pelicula('lordofrings', 'El Señor de los Anillos: El Retorno del Rey', `Dirigida por Peter Jackson, culmina la trilogía épica basada en la obra de J.R.R. Tolkien.<br>
+                La película sigue la batalla final por la Tierra Media, mientras Frodo y Sam se acercan al Monte del Destino.<br>
+                Ganadora de múltiples premios, esta epopeya cinematográfica es una conclusión emocionalmente poderosa<br>
+                y visualmente impresionante.`,
+            2003, 13, 'https://www.youtube.com/watch?v=zckJCxYxn1g');
+        const movie12 = new Pelicula('frozen2', 'Frozen 2', `La secuela del éxito animado de Disney, lleva a Elsa, Anna, Olaf, Kristoff y Sven en un viaje más allá de Arendelle<br>
+                para descubrir el origen de los poderes mágicos de Elsa y salvar su reino. La película, ofrece una emocionante aventura<br>
+                musical que explora temas de autodescubrimiento y conexión con el pasado.`,
+            2019, 1, 'https://www.youtube.com/watch?v=Zi4LMpSDccc');
+        peliculas = [movie, movie2, movie3, movie4, movie5, movie6, movie7, movie8, movie9, movie10, movie11, movie12];
+        for (let pelicula of peliculas) {
+            var div = $('<div>').html('<img src="img/' + pelicula.id + '.jpg" alt="' + pelicula.id + '" class="pelicula" id="' + pelicula.id + '" title="' + pelicula.titulo + '">');
+            $('figure').append(div);
+        };
+        //if para saber que reproducir al clicar en las peliculas
+        watchMovie();
+        //if para tratar con el user segun si esta registrado o no
+        checkLogin();
+        //muestra informacion de la pelicula al pasar el raton por la img
+        info();
+
+        $('.datepicker').click(function () {
+            picker = $('.datepicker').pickadate({
+                firstDay: 1,
+                selectYears: true,
+                selectYears: 100,
+                max: new Date(2023, 11, 31)
+            }).pickadate('picker');
+        })
+
+        $('#accept').click(function () {
+            user[0] = $('#nombre').val();
+            user[1] = $('#datepicker').val();
+
+            let age = calcularEdad();
+            $('#user p').html(user[0] + ', ' + age + ' years old');
+            $('#p1').html('Nombre: ' + user[0]);
+            $('#p2').html('Fecha de nacimento: ' + user[1]);
+            $('#p3').html('Edad: ' + age);
+            $('#formLogin').fadeOut();
+            $('.pelicula').parent().hide();
+            for (let pelicula of peliculas) {
+                if (pelicula.categoria <= age) {
+                    let clase = '#' + pelicula.id;
+                    $(clase).parent().show();
+                }
+            }
+            watchMovie();
+            checkLogin();
+        })
+        $('#cancel').click(function () {
+            $('#formLogin').fadeOut();
+        });
+
+        $('#logOut').click(function () {
+            user[0] = '';
+            user[1] = '';
+            let age = null;
+            $('#user p').html('');
+            $('#profile').fadeOut();
+            $('.pelicula').parent().show();
+            watchMovie();
+            checkLogin();
+        });
+        $('#cancel2').click(function () {
+            $('#profile').fadeOut();
+        });
+
+
+    });
+</script>
+
+</html>

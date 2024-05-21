@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>Exercici 1</title>
+    <style>
+        body{
+            background-color: white;
+        }
+        p{
+            display: none;
+        }
+        .par{
+            background-color: aquamarine;
+        }
+        .impar{
+            background-color: salmon;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li id="nf">
+            <a href="https://www.netflix.com" target="_blank" id="1"><button>Netflix</button></a>
+            <p class="contenido">Esta pagina web se usa para ver series y peliculas.</p>
+        </li>
+        <li id="wk"><a href="https://es.wikipedia.org" target="_blank" id="2"><button>Wikipedia</button></a>
+            <p class="contenido">Esta pagina web se usa para buscar informacion.</p>
+        </li>
+        <li id="cr"><a href="https://www.crunchyroll.com" target="_blank" id="3"><button>Crunchyroll</button></a>
+            <p class="contenido">Esta pagina web se usa para ver anime.</p>
+        </li>
+    </ul>
+</body>
+<script>
+    $(document).ready(function () {
+        
+        //$('li .contenido').hide();
+        $('a').mouseenter(function(){
+            if($(this).attr('id') == 1 || $(this).attr('id') == 3){
+                $(this).siblings('p').addClass('impar');
+            }else{
+                $(this).siblings('p').addClass('par');
+            }
+            $(this).siblings('p').show();
+        });
+        $('a').mouseleave(function(){
+            $(this).siblings('p').hide();
+        });
+    })
+</script>
+
+</html>

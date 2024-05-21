@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazonas Drag & Drop</title>
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url('img/fondoMadera.jpg');
+            background-size: cover;
+        }
+
+        #victoria {
+            width: 100%;
+            height: 100px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        #board{
+            border: 30px solid rgb(42, 28, 6);
+        }
+
+        #board div {
+            display: flex;
+        }
+
+        #board div div {
+            width: 50px;
+            height: 50px;
+        }
+
+        .white {
+            background-color: rgb(220, 220, 150);
+        }
+
+        .black {
+            background-color: grey;
+        }
+
+        .camino {
+            border: 2px solid orangered;
+        }
+
+        .camino2 {
+            border: 2px solid red;
+        }
+
+        .noCamino {
+            border: 2px solid rgb(74, 74, 74);
+        }
+
+        .selected {
+            border: 2px solid rgb(111, 240, 111);
+        }
+
+        .moved {
+            border: 2px solid orangered;
+        }
+
+        .blocked {
+            background-color: black;
+            width: 100%;
+        }
+
+        .over {
+            border: 2px dotted #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="victoria"></h1>
+    <div id="board">
+
+    </div>
+</body>
+<script>
+    function dibujaTablero() {
+        let contador = 1;
+        for (let i = 0; i < 10; i++) {
+            let row = document.createElement('div');
+            tablero.appendChild(row);
+            contador++;
+            for (let j = 0; j < 10; j++) {
+                let cell = document.createElement('div');
+                cell.id = contador;
+                if (cell.id % 2 == 0) {
+                    cell.classList.add('white');
+                } else {
+                    cell.classList.add('black');
+                }
+                cell.classList.add('noCamino');
+                cell.addEventListener('click', este);
+                row.appendChild(cell);
+                if (contador == 68 || contador == 77 || contador == 104 || contador == 107) {
+                    let img = document.createElement('img');
+                    img.src = 'img/white.png';
+                    cell.appendChild(img);
+                    cell.classList.add('qW');
+                }
+                if (contador == 5 || contador == 8 || contador == 35 || contador == 44) {
+                    let img = document.createElement('img');
+                    img.src = 'img/black.png';
+                    cell.appendChild(img);
+                    cell.classList.add('qB');
+                }
+                contador++;
+            }
+        }
+        selected();
+    }
+
+    function quitarCamino() {
+        for (let i = 0; i < tablero.children.length; i++) {
+            for (let j = 0; j < tablero.children[i].children.length; j++) {
+                tablero.children[i].children[j].classList.remove('camino');
+                tablero.children[i].children[j].classList.remove('camino2');
+                tablero.children[i].children[j].classList.add('noCamino');
+                tablero.children[i].children[j].removeEventListener('drop', drop);
+                tablero.children[i].children[j].removeEventListener('dragover', dragOver);
+                tablero.children[i].children[j].removeEventListener('dragenter', dragEnter);
+                tablero.children[i].children[j].removeEventListener('dragleave', dragLeave);
+            }
+        }
+    }
+    function quitSelected(bool) {
+        if (bool) {
+            for (let i = 0; i < tablero.children.length; i++) {
+                for (let j = 0; j < tablero.children[i].children.length; j++) {
+                    if (tablero.children[i].children[j].classList.contains('selected')) {
+                        tablero.children[i].children[j].classList.remove('selected');
+                    } else if (tablero.children[i].children[j].classList.contains('moved')) {
+                        tablero.children[i].children[j].classList.remove('moved');
+                    }
+                }
+            }
+        } else {
+            for (let i = 0; i < tablero.children.length; i++) {
+                for (let j = 0; j < tablero.children[i].children.length; j++) {
+                    if (tablero.children[i].children[j].classList.contains('selected')) {
+                        tablero.children[i].children[j].classList.remove('selected');
+                    }
+                }
+            }
+        }
+    }
+
+    function victoria() {
+        for (let i = 0; i < tablero.children.length; i++) {
+            for (let j = 0; j < tablero.children[i].children.length; j++) {
+                if (tablero.children[i].children[j].classList.contains('selected')) {
+                    for (let k = -1; k < 2; k++) {
+                        for (let l = -1; l < 2; l++) {
+                            if (k !== 0 || l !== 0) {
+                                const adjI = i + k;
+                                const adjJ = j + l;
+
+                                if (
+                                    adjI >= 0 &&
+                                    adjI < tablero.children.length &&
+                                    adjJ >= 0 &&
+                                    adjJ < tablero.children[adjI].children.length
+                                ) {
+                                    const adjCell = tablero.children[adjI].children[adjJ];
+                                    if (adjCell.children.length === 0) {
+                                        return false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+        /*let tapada = false;
+        for (let i = 0; i < tablero.children.length; i++) {
+            for (let j = 0; j < tablero.children[i].children.length; j++) {
+                for (let k = -1; k < 2; k++) {
+                    for (let l = -1; l < 2; l++) {
+                        if ((k + l != 0) && (i + k >= 0) && (i + k <= tablero.children.length -1) && (j + l >= 0) && (j + l <= tablero.children.length -1) && (tablero.children[i].children[j].classList.contains('selected'))) {
+                            let actCel = tablero.children[i + k].children[j + l];
+                            if (actCel.children.length > 0) {
+                                tapada = true;
+                            } else {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return tapada;*/
+    }
+
+    function creaCaminos(camino, e) {
+        let clase;
+        let condicion;
+
+        for (let i = 0; i < tablero.children.length; i++) {
+            for (let j = 0; j < tablero.children[i].children.length; j++) {
+                if (camino == 'camino') {
+                    clase = 'selected';
+                    condicion = tablero.children[i].children[j].id == e.target.parentNode.id;
+                } else {
+                    clase = 'moved';
+                    condicion = true;
+                }
+                if ((condicion) && (tablero.children[i].children[j].classList.contains(clase))) {
+                    //derecha
+                    for (let k = j; (k < tablero.children[i].children.length - 1) && (tablero.children[i].children[k + 1].children.length == 0); k++) {
+                        tablero.children[i].children[k + 1].classList.remove('noCamino');
+                        tablero.children[i].children[k + 1].classList.add(camino);
+                    }//izquierda
+                    for (let k = j; (k > 0) && (tablero.children[i].children[k - 1].children.length == 0); k--) {
+                        tablero.children[i].children[k - 1].classList.remove('noCamino');
+                        tablero.children[i].children[k - 1].classList.add(camino);
+                    }//abajo
+                    for (let k = i; (k < tablero.children.length - 1) && (tablero.children[k + 1].children[j].children.length == 0); k++) {
+                        tablero.children[k + 1].children[j].classList.remove('noCamino');
+                        tablero.children[k + 1].children[j].classList.add(camino);
+                    }//arriba
+                    for (let k = i; (k > 0) && (tablero.children[k - 1].children[j].children.length == 0); k--) {
+                        tablero.children[k - 1].children[j].classList.remove('noCamino');
+                        tablero.children[k - 1].children[j].classList.add(camino);
+                    }//abajo derecha
+                    for (let k = 1; ((i + k) < ((tablero.children.length))) && ((j + k) < ((tablero.children.length)))
+                        && (tablero.children[i + k].children[j + k].children.length == 0); k++) {
+                        tablero.children[i + k].children[j + k].classList.remove('noCamino');
+                        tablero.children[i + k].children[j + k].classList.add(camino);
+                    }//abajo izquierda
+                    for (let k = 1; ((i + k) < ((tablero.children.length))) && ((j - k) >= 0)
+                        && (tablero.children[i + k].children[j - k].children.length == 0); k++) {
+                        tablero.children[i + k].children[j - k].classList.remove('noCamino');
+                        tablero.children[i + k].children[j - k].classList.add(camino);
+                    }//arriba izquierda
+                    for (let k = 1; ((i - k) >= 0) && ((j - k) >= 0)
+                        && (tablero.children[i - k].children[j - k].children.length == 0); k++) {
+                        tablero.children[i - k].children[j - k].classList.remove('noCamino');
+                        tablero.children[i - k].children[j - k].classList.add(camino);
+                    }//arriba derecha
+                    for (let k = 1; ((j + k) < ((tablero.children.length))) && ((i - k) >= 0)
+                        && (tablero.children[i - k].children[j + k].children.length == 0); k++) {
+                        tablero.children[i - k].children[j + k].classList.remove('noCamino');
+                        tablero.children[i - k].children[j + k].classList.add(camino);
+                    }
+                }
+            }
+        }
+    }
+
+    function dragStart(e) {
+        if (e.target.parentNode.classList.contains('selected')) {
+            dragSrcEl = e.target;
+            e.dataTransfer.effectAllowed = 'move';
+            creaCaminos('camino', e);
+            let caminos = document.querySelectorAll('.camino');
+            caminos.forEach(camino => {
+                camino.addEventListener('drop', drop);
+                camino.addEventListener('dragover', dragOver);
+                camino.addEventListener('dragenter', dragEnter);
+                camino.addEventListener('dragleave', dragLeave);
+            });
+        }
+    }
+
+    function dragEnd(e) {
+        quitarCamino();
+        e.target.style.opacity = '1';
+        let caminos = document.querySelectorAll('.camino');
+        caminos.forEach(function (item) {
+            item.classList.remove('over');
+        });
+    }
+
+    function dragEnter(e) {
+        e.target.classList.add('over');
+    }
+
+    function dragLeave(e) {
+        e.target.classList.remove('over');
+    }
+
+    function dragOver(e) {
+        if (e.preventDefault) {
+            e.preventDefault();
+        }
+        return false;
+    }
+
+    function drop(e) {
+        e.target.appendChild(dragSrcEl);
+        e.target.classList.remove('over');
+        quitarCamino();
+        quitSelected(false);
+        e.target.classList.add('moved');
+        //selected();
+        este2();
+    }
+
+    function este(e) {
+        if (e.target.tagName == 'IMG') {
+            quitarCamino();
+            for (let i = 0; i < tablero.children.length; i++) {
+                for (let j = 0; j < tablero.children[i].children.length; j++) {
+                    if ((tablero.children[i].children[j].id == e.target.parentNode.id) && (tablero.children[i].children[j].classList.contains('selected'))) {
+                        creaCaminos('camino', i, j);
+
+                        let caminos = document.querySelectorAll('.camino');
+                        caminos.forEach(camino => {
+                            camino.addEventListener('drop', drop);
+                            camino.addEventListener('dragover', dragOver);
+                            camino.addEventListener('dragenter', dragEnter);
+                            camino.addEventListener('dragleave', dragLeave);
+                        });
+                    }
+                }
+            }
+        }
+        este2();
+    }
+
+    function este2(e) {
+        /*for (let i = 0; i < tablero.children.length; i++) {
+            for (let j = 0; j < tablero.children[i].children.length; j++) {
+                if ((tablero.children[i].children[j].classList.contains('moved'))) {*/
+        creaCaminos('camino2', e);
+        caminos2 = document.querySelectorAll('.camino2');
+
+        caminos2.forEach(camino => {
+            camino.addEventListener('click', block);
+        });
+        //tablero.children[i].children[j].classList.remove('moved');
+    }
+    /*}
+}
+}*/
+
+    function block(e) {
+        if (e.target.classList.contains('camino2')) {
+            let block = document.createElement('div');
+            block.classList.add('blocked');
+            e.target.appendChild(block);
+        } else {
+            block(e);
+        }
+        let caminos2 = document.querySelectorAll('.camino2');
+        caminos2.forEach(camino => {
+            camino.removeEventListener('click', block);
+        });
+        quitarCamino();
+        turno++;
+        quitSelected(true);
+        selected();
+    }
+
+    function selected() {
+        for (let i = 0; i < tablero.children.length; i++) {
+            for (let j = 0; j < tablero.children[i].children.length; j++) {
+                if ((turno % 2 == 0) && (tablero.children[i].children[j].children[0])) {
+                    if (tablero.children[i].children[j].children[0].getAttribute('src') == 'img/black.png') {
+                        tablero.children[i].children[j].classList.add('selected');
+                        tablero.children[i].children[j].setAttribute('draggable', 'true');
+                    }
+                } else if ((turno % 2 != 0) && (tablero.children[i].children[j].children[0])) {
+                    if (tablero.children[i].children[j].children[0].getAttribute('src') == 'img/white.png') {
+                        tablero.children[i].children[j].classList.add('selected');
+                        tablero.children[i].children[j].setAttribute('draggable', 'true');
+                    }
+                }
+            }
+        }
+        if (victoria()) {
+            let color;
+            color = turno % 2 != 0 ? 'negras' : 'blancas';
+            /*if(turno % 2 != 0) {
+                color = 'negras';
+            }else{
+                color = 'blancas';
+            }*/
+            vic.innerHTML = "Fin de la partida, ganan las " + color + " !";
+        } else {
+            vic.innerHTML = "";
+        }
+    }
+
+
+    let turno = 1;
+    let tablero = document.getElementById('board');
+    let noMov = false;
+    let vic = document.getElementById('victoria');
+    dibujaTablero();
+    tablero.addEventListener('dragstart', dragStart);
+    tablero.addEventListener('dragend', dragEnd);
+</script>
+
+</html>

@@ -1,0 +1,96 @@
+header,body,footer{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+header{
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+header nav{
+    width: 100vw;
+    height: 50px;
+    background-color: rgb(255, 99, 120);
+}
+#logo{
+    width: 100px;
+}
+nav{
+    display: flex;
+    justify-content: center;
+}
+nav img{
+    width: 40px;
+}
+nav div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-weight: bolder;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+nav div:hover{
+    background-color: rgb(255, 147, 107);
+}
+body{
+    background-color: rgb(6, 6, 32);
+}
+figure{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0;
+}
+figure div{
+    display: flex;
+    align-items: center;
+    width: 20%;
+    height: 500px;
+    background-color: #1d1d1d;
+    border: 5px solid white;
+    margin: 5px;
+}
+figure img{
+    width: 100%;
+    cursor: pointer;
+}
+#formLogin{
+    display: none;
+    margin: auto;
+    padding: 20px;
+    width: 30%;
+    height: 150px;
+    background-color: black;
+    color: white;
+}
+#needLogin{
+    color: white;    
+}
+#user{
+    position: absolute;
+    top: 0;
+    margin-left: 10px;
+    color: white;
+}
+#profile{
+    display: none;
+    margin: auto;
+    padding: 20px;
+    width: 30%;
+    height: 150px;
+    background-color: black;
+    color: white;
+}
+.tooltip-inner {
+    background-color: #1d1d1d; /* Color de fondo deseado */
+    color: #fff; /* Color del texto */
+    border-radius: 4px; /* Bordes redondeados (opcional) */
+    padding: 10px; /* Espaciado interno (opcional) */
+}

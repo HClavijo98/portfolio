@@ -1,0 +1,501 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Test IQ</title>
+    <style>
+        #inicio {
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+        }
+        #ver{
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #p1 {
+            justify-content: center;
+            align-items: center;
+        }
+
+        #p2 {
+            justify-content: center;
+            align-items: center;
+        }
+
+        #p3 {
+            justify-content: center;
+            align-items: center;
+        }
+
+        #p4 {
+            justify-content: center;
+            align-items: center;
+        }
+
+        #p5 {
+            justify-content: center;
+            align-items: center;
+        }
+
+        #p6 {
+            justify-content: center;
+            align-items: center;
+        }
+
+        #p7 {
+            justify-content: center;
+            align-items: center;
+        }
+
+        #p8 {
+            justify-content: center;
+            align-items: center;
+        }
+
+        #p9 {
+            justify-content: center;
+            align-items: center;
+        }
+
+        #p10 {
+            justify-content: center;
+            align-items: center;
+        }
+
+        #p11 {
+            justify-content: center;
+            align-items: center;
+        }
+
+        li {
+            list-style: none;
+            margin-left: -40px;
+        }
+
+        body {
+            display: flex;
+            background-color: white;
+        }
+
+        .lateral {
+            display: inline-block;
+            background-color: rgb(237, 237, 220);
+            border: 1px solid black;
+            border-radius: 20px;
+            padding: 5px;
+            margin-right: 400px;
+        }
+
+        .lateral div {
+            background-color: white;
+            border: 1px solid black;
+            border-radius: 100px;
+            text-align: center;
+            margin-top: 3px;
+            margin-bottom: 3px;
+        }
+
+        .preguntas {
+            background-color: rgb(237, 237, 220);
+            border: 1px solid black;
+            border-radius: 20px;
+            padding: 5px;
+            width: 25%;
+            text-align: center;
+            display: none;
+        }
+
+        .rojo {
+            color: red;
+        }
+
+        .verde {
+            color: green;
+        }
+
+        .azul {
+            color: blue;
+        }
+
+        .amarillo {
+            color: yellow;
+        }
+
+        .violeta {
+            color: violet;
+        }
+    </style>
+</head>
+
+<body>
+    <noscript>
+        <p>JavaScript está deshabilitado en su navegador.
+            Algunas funcionalidades de este sitio pueden no funcionar correctamente.
+            Por favor, habilite JavaScript en su navegador para disfrutar de la experiencia completa.
+        </p>
+    </noscript>
+
+    <div class="lateral">
+        <div id="menuI" onclick="mostrarFormulario('inicio')">Inicio</div>
+        <div id="menu1" onclick="mostrarFormulario('p1')">Pregunta 1</div>
+        <div id="menu2" onclick="mostrarFormulario('p2')">Pregunta 2</div>
+        <div id="menu3" onclick="mostrarFormulario('p3')">Pregunta 3</div>
+        <div id="menu4" onclick="mostrarFormulario('p4')">Pregunta 4</div>
+        <div id="menu5" onclick="mostrarFormulario('p5')">Pregunta 5</div>
+        <div id="menu6" onclick="mostrarFormulario('p6')">Pregunta 6</div>
+        <div id="menu7" onclick="mostrarFormulario('p7')">Pregunta 7</div>
+        <div id="menu8" onclick="mostrarFormulario('p8')">Pregunta 8</div>
+        <div id="menu9" onclick="mostrarFormulario('p9')">Pregunta 9</div>
+        <div id="menu10" onclick="mostrarFormulario('p10')">Pregunta 10</div>
+        <div id="menu11" onclick="mostrarFormulario('p11')">Pregunta 11</div>
+        <div id="menuV" onclick="mostrarFormulario('ver'); compararCampos()">Ver</div>
+    </div>
+    <div class="preguntas" id="inicio">
+        <h1>Test de IQ</h1>
+    </div>
+    <div class="preguntas" id="p1">
+        <form action="IQ.html" method="post">
+            Pregunta 1: Indica con un clic Cual es roja
+            <ul>
+                <li><input type="radio" name="pre1" value="a"><span class="rojo">Verde</span></li>
+                <li><input type="radio" name="pre1" value="b"><span class="verde">Amarillo</span></li>
+                <li><input type="radio" name="pre1" value="c"><span class="azul">Rojo</span></li>
+                <li><input type="radio" name="pre1" value="d"><span class="amarillo">Violeta</span></li>
+                <li><input type="radio" name="pre1" value="e"><span class="violeta">Azul</span></li>
+            </ul>
+        </form>
+    </div>
+    <div class="preguntas" id="p2">
+        <form action="IQ.html" method="post">
+            Pregunta 2: 1, 3, 5, 7, ...
+            <ul>
+                <li><input type="radio" name="pre2" value="a">7</li>
+                <li><input type="radio" name="pre2" value="b">8</li>
+                <li><input type="radio" name="pre2" value="c">9</li>
+                <li><input type="radio" name="pre2" value="d">10</li>
+            </ul>
+        </form>
+    </div>
+    <div class="preguntas" id="p3">
+        <form action="IQ.html" method="post">
+            Pregunta 3: A es a C lo que 1 es a...
+            <ul>
+                <li><input type="radio" name="pre3" value="a">1</li>
+                <li><input type="radio" name="pre3" value="b">2</li>
+                <li><input type="radio" name="pre3" value="c">3</li>
+                <li><input type="radio" name="pre3" value="d">4</li>
+            </ul>
+        </form>
+    </div>
+    <div class="preguntas" id="p4">
+        <form action="IQ.html" method="post">
+            Pregunta 4:<br>
+            <img src="TestIQ/q01-300x44.jpg" alt="pregunta 4">
+            <ul>
+                <li><input type="radio" name="pre4" value="a">a</li>
+                <li><input type="radio" name="pre4" value="b">b</li>
+                <li><input type="radio" name="pre4" value="c">c</li>
+                <li><input type="radio" name="pre4" value="d">d</li>
+            </ul>
+        </form>
+    </div>
+    <div class="preguntas" id="p5">
+        <form action="IQ.html" method="post">
+            Pregunta 5: Si tienes 2 monedas y Maria tiene 4 monedas mas que tu. ¿Cuantas monedas tiene en total?
+            <ul>
+                <li><input type="radio" name="pre5" value="a">4</li>
+                <li><input type="radio" name="pre5" value="b">6</li>
+                <li><input type="radio" name="pre5" value="c">8</li>
+                <li><input type="radio" name="pre5" value="d">10</li>
+            </ul>
+        </form>
+    </div>
+    <div class="preguntas" id="p6">
+        <form action="IQ.html" method="post">
+            Pregunta 6: 66 es a 33 como DD es a...
+            <ul>
+                <li><input type="radio" name="pre6" value="a">AA</li>
+                <li><input type="radio" name="pre6" value="b">BB</li>
+                <li><input type="radio" name="pre6" value="c">DD</li>
+                <li><input type="radio" name="pre6" value="d">11</li>
+            </ul>
+        </form>
+    </div>
+    <div class="preguntas" id="p7">
+        <form action="IQ.html" method="post">
+            Pregunta 7: Nemo es a Omen como Rama es a...
+            <ul>
+                <li><input type="radio" name="pre7" value="a">Asar</li>
+                <li><input type="radio" name="pre7" value="b">Amar</li>
+                <li><input type="radio" name="pre7" value="c">Arma</li>
+                <li><input type="radio" name="pre7" value="d">Hoja</li>
+            </ul>
+        </form>
+    </div>
+    <div class="preguntas" id="p8">
+        <form action="IQ.html" method="post">
+            Pregunta 8: 1, 4, 9, 16, 25...
+            <ul>
+                <li><input type="radio" name="pre8" value="a">31</li>
+                <li><input type="radio" name="pre8" value="b">32</li>
+                <li><input type="radio" name="pre8" value="c">35</li>
+                <li><input type="radio" name="pre8" value="d">36</li>
+            </ul>
+        </form>
+    </div>
+    <div class="preguntas" id="p9">
+        <form action="IQ.html" method="post">
+            Pregunta 9:<br>
+            <img src="TestIQ/q02-300x44.jpg" alt="pregunta 9">
+            <ul>
+                <li><input type="radio" name="pre9" value="a">a</li>
+                <li><input type="radio" name="pre9" value="b">b</li>
+                <li><input type="radio" name="pre9" value="c">c</li>
+                <li><input type="radio" name="pre9" value="d">d</li>
+            </ul>
+        </form>
+    </div>
+    <div class="preguntas" id="p10">
+        <form action="IQ.html" method="post">
+            Pregunta 10: 6 + 2 = 26 como 3 + 7 es igual a...
+            <ul>
+                <li><input type="radio" name="pre10" value="a">17</li>
+                <li><input type="radio" name="pre10" value="b">39</li>
+                <li><input type="radio" name="pre10" value="c">73</li>
+                <li><input type="radio" name="pre10" value="d">79</li>
+            </ul>
+        </form>
+    </div>
+    <div class="preguntas" id="p11">
+        <form action="IQ.html" method="post">
+            Pregunta 11: Cuchara es a comida como hacha es a...
+            <ul>
+                <li><input type="radio" name="pre11" value="a">Piedra</li>
+                <li><input type="radio" name="pre11" value="b">Madera</li>
+                <li><input type="radio" name="pre11" value="c">Diamante</li>
+                <li><input type="radio" name="pre11" value="d">Hombre</li>
+            </ul>
+        </form>
+    </div>
+    <div class="preguntas" id="ver">
+        <div id="ver1"></div>
+        <div id="ver2"></div>
+        <div id="ver3"></div>
+        <div id="ver4"></div>
+        <div id="ver5"></div>
+        <div id="ver6"></div>
+        <div id="ver7"></div>
+        <div id="ver8"></div>
+        <div id="ver9"></div>
+        <div id="ver10"></div>
+        <div id="ver11"></div>
+    </div>
+</body>
+<script>
+    function mostrarFormulario(numeroPregunta) {
+        var preguntas = document.querySelectorAll(".preguntas");
+        preguntas.forEach(function (pregunta) {
+            pregunta.style.display = 'none';
+        });
+
+        var preguntaActual = document.getElementById(numeroPregunta);
+        if (preguntaActual) {
+            preguntaActual.style.display = 'flex';
+        }
+    }
+
+    function compararCampos() {
+
+        // Obtener los valores de los campos de entrada
+        var radios1 = document.getElementsByName("pre1");
+        var radios2 = document.getElementsByName("pre2");
+        var radios3 = document.getElementsByName("pre3");
+        var radios4 = document.getElementsByName("pre4");
+        var radios5 = document.getElementsByName("pre5");
+        var radios6 = document.getElementsByName("pre6");
+        var radios7 = document.getElementsByName("pre7");
+        var radios8 = document.getElementsByName("pre8");
+        var radios9 = document.getElementsByName("pre9");
+        var radios10 = document.getElementsByName("pre10");
+        var radios11 = document.getElementsByName("pre11");
+
+        var valor1 = null;
+        var valor2 = null;
+        var valor3 = null;
+        var valor4 = null;
+        var valor5 = null;
+        var valor6 = null;
+        var valor7 = null;
+        var valor8 = null;
+        var valor9 = null;
+        var valor10 = null;
+        var valor11 = null;
+
+        var respuestas = ["a", "c", "c", "b", "b", "b", "b",
+            "d", "d", "c", "b"];
+
+        for(var i=0; i < radios1.length; i++){
+            if(radios1[i].checked){
+                valor1 = radios1[i].value;
+            }
+        }
+        for(var i=0; i < radios2.length; i++){
+            if(radios2[i].checked){
+                valor2 = radios2[i].value;
+            }
+        }
+        for(var i=0; i < radios3.length; i++){
+            if(radios3[i].checked){
+                valor3 = radios3[i].value;
+            }
+        }
+        for(var i=0; i < radios4.length; i++){
+            if(radios4[i].checked){
+                valor4 = radios4[i].value;
+            }
+        }
+        for(var i=0; i < radios5.length; i++){
+            if(radios5[i].checked){
+                valor5 = radios5[i].value;
+            }
+        }
+        for(var i=0; i < radios6.length; i++){
+            if(radios6[i].checked){
+                valor6 = radios6[i].value;
+            }
+        }
+        for(var i=0; i < radios7.length; i++){
+            if(radios7[i].checked){
+                valor7 = radios7[i].value;
+            }
+        }
+        for(var i=0; i < radios8.length; i++){
+            if(radios8[i].checked){
+                valor8 = radios8[i].value;
+            }
+        }
+        for(var i=0; i < radios9.length; i++){
+            if(radios9[i].checked){
+                valor9 = radios9[i].value;
+            }
+        }
+        for(var i=0; i < radios10.length; i++){
+            if(radios10[i].checked){
+                valor10 = radios10[i].value;
+            }
+        }
+        for(var i=0; i < radios11.length; i++){
+            if(radios11[i].checked){
+                valor11 = radios11[i].value;
+            }
+        }
+
+        // Comprobar si los valores son iguales
+        if (valor1 != null) {
+            if(valor1 == respuestas[0]){
+                document.getElementById("ver1").textContent = "Pregunta 1: Respuesta correcta.";
+            }else{
+                document.getElementById("ver1").textContent = "Pregunta 1: Respuesta incorrecta.";
+            }
+        } else {
+            document.getElementById("ver1").textContent = "Pregunta 1: Esta pregunta no ha sido respondida.";
+        }
+        if (valor2 != null) {
+            if(valor2 == respuestas[1]){
+                document.getElementById("ver2").textContent = "Pregunta 2: Respuesta correcta.";
+            }else{
+                document.getElementById("ver2").textContent = "Pregunta 2: Respuesta incorrecta.";
+            }
+        } else {
+            document.getElementById("ver2").textContent = "Pregunta 2: Esta pregunta no ha sido respondida.";
+        }
+        if (valor3 != null) {
+            if(valor3 == respuestas[2]){
+                document.getElementById("ver3").textContent = "Pregunta 3: Respuesta correcta.";
+            }else{
+                document.getElementById("ver3").textContent = "Pregunta 3: Respuesta incorrecta.";
+            }
+        } else {
+            document.getElementById("ver3").textContent = "Pregunta 3: Esta pregunta no ha sido respondida.";
+        }
+        if (valor4 != null) {
+            if(valor4 == respuestas[3]){
+                document.getElementById("ver4").textContent = "Pregunta 4: Respuesta correcta.";
+            }else{
+                document.getElementById("ver4").textContent = "Pregunta 4: Respuesta incorrecta.";
+            }
+        } else {
+            document.getElementById("ver4").textContent = "Pregunta 4: Esta pregunta no ha sido respondida.";
+        }
+        if (valor5 != null) {
+            if(valor5 == respuestas[4]){
+                document.getElementById("ver5").textContent = "Pregunta 5: Respuesta correcta.";
+            }else{
+                document.getElementById("ver5").textContent = "Pregunta 5: Respuesta incorrecta.";
+            }
+        } else {
+            document.getElementById("ver5").textContent = "Pregunta 5: Esta pregunta no ha sido respondida.";
+        }
+        if (valor6 != null) {
+            if(valor6 == respuestas[5]){
+                document.getElementById("ver6").textContent = "Pregunta 6: Respuesta correcta.";
+            }else{
+                document.getElementById("ver6").textContent = "Pregunta 6: Respuesta incorrecta.";
+            }
+        } else {
+            document.getElementById("ver6").textContent = "Pregunta 6: Esta pregunta no ha sido respondida.";
+        }
+        if (valor7 != null) {
+            if(valor7 == respuestas[6]){
+                document.getElementById("ver7").textContent = "Pregunta 7: Respuesta correcta.";
+            }else{
+                document.getElementById("ver7").textContent = "Pregunta 7: Respuesta incorrecta.";
+            }
+        } else {
+            document.getElementById("ver7").textContent = "Pregunta 7: Esta pregunta no ha sido respondida.";
+        }
+        if (valor8 != null) {
+            if(valor8 == respuestas[7]){
+                document.getElementById("ver8").textContent = "Pregunta 8: Respuesta correcta.";
+            }else{
+                document.getElementById("ver8").textContent = "Pregunta 8: Respuesta incorrecta.";
+            }
+        } else {
+            document.getElementById("ver8").textContent = "Pregunta 8: Esta pregunta no ha sido respondida.";
+        }
+        if (valor9 != null) {
+            if(valor9 == respuestas[8]){
+                document.getElementById("ver9").textContent = "Pregunta 9: Respuesta correcta.";
+            }else{
+                document.getElementById("ver9").textContent = "Pregunta 9: Respuesta incorrecta.";
+            }
+        } else {
+            document.getElementById("ver9").textContent = "Pregunta 9: Esta pregunta no ha sido respondida.";
+        }
+        if (valor10 != null) {
+            if(valor10 == respuestas[9]){
+                document.getElementById("ver10").textContent = "Pregunta 10: Respuesta correcta.";
+            }else{
+                document.getElementById("ver10").textContent = "Pregunta 10: Respuesta incorrecta.";
+            }
+        } else {
+            document.getElementById("ver10").textContent = "Pregunta 10: Esta pregunta no ha sido respondida.";
+        }
+        if (valor11 != null) {
+            if(valor11 == respuestas[10]){
+                document.getElementById("ver11").textContent = "Pregunta 11: Respuesta correcta.";
+            }else{
+                document.getElementById("ver11").textContent = "Pregunta 11: Respuesta incorrecta.";
+            }
+        } else {
+            document.getElementById("ver11").textContent = "Pregunta 11: Esta pregunta no ha sido respondida.";
+        }
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video 1</title>
+</head>
+<style>
+    body{
+        background-color: white;
+    }
+    .imagen-invertida {
+      transform: scaleX(-1);
+    }
+    #controls{
+        width: 500px;
+        max-width: 600px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    button{
+        width: 100px;
+        height: 50px;
+        cursor: pointer;
+    }
+    img{
+        width: 50%;
+    }
+</style>
+<body>
+    <video src="multimedia/soloLeveling2.mp4" width="500" height="300" controls></video>
+    <video src="multimedia/goldenBoy.mp4" width="500" height="300" controls poster="multimedia/goldenBoy.jpeg"></video>
+    <div style="width: 500px;">
+        <video id="miVideo"  width="500" height="300" controls>
+            <source src="multimedia/conejo.webm">
+            <source src="multimedia/conejo2.mp4">
+            <source src="multimedia/conejo3.webm">
+        </video>
+        <p>El video ha sido pausado <span id="contadorPausas">0</span> veces.</p>
+    </div>
+    <div id="controls">
+        <video id="noControls" src="multimedia/conejo.webm" width="500" height="300"></video>
+        <button id="boton1"><img class="imagen-invertida" src="multimedia/siguiente.png" alt="Retroceder"></button>
+        <button id="boton2"><img src="multimedia/play.png" alt="Play"></button>
+        <button id="boton3"><img src="multimedia/siguiente.png" alt="Siguiente"></button>
+        <img src="multimedia/volume.png" alt="Volumen" style="width: 50px;"><input id="barraVolumen" type="range" min="0" max="1" step="0.01" value="1">
+    </div>
+</body>
+<script>
+    function contador() {
+        pausas++;
+        contadorPausas.textContent = pausas;
+    }
+    function reproducir(e){
+        if(noControls.paused){
+            noControls.play();
+            boton2.children[0].src = "multimedia/pause.png";
+        }else if(!(noControls.paused)){
+            noControls.pause();
+            boton2.children[0].src = "multimedia/play.png";
+        }
+    }
+    function plus(){
+        noControls.currentTime += 5;
+    }
+    function less(){
+        noControls.currentTime -= 5;
+    }
+    function volumen(e){
+      noControls.volume = e.target.value;
+    }
+
+    var video = document.getElementById("miVideo");
+    var contadorPausas = document.getElementById("contadorPausas");
+    var boton1 = document.getElementById("boton1");
+    var boton2 = document.getElementById("boton2");
+    var boton3 = document.getElementById("boton3");
+    var noControls = document.getElementById("noControls");
+    var volume = document.getElementById("barraVolumen");
+    var pausas = 0;
+
+    video.addEventListener("pause", contador);
+    boton2.addEventListener("click", reproducir);
+    boton1.addEventListener("click", less);
+    boton3.addEventListener("click", plus);
+    volume.addEventListener("change", volumen);
+
+</script>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #amarillo{
+            background-color: rgb(255, 252, 183);
+            border: 5px solid rgb(183, 156, 49);
+        }
+        #verde{
+            background-color: rgb(211, 255, 171);
+            border: 5px solid rgb(116, 163, 69);
+        }
+        #azul{
+            background-color: rgb(184, 227, 255);
+            border: 5px solid rgb(12, 51, 109);
+        }
+        #foto1{
+            width: 100%;
+        }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: white;
+        }
+        body div{
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-top-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+        body div img{
+            width: 40px;
+            margin: 0;
+        }
+        header {
+            background-color: rgb(182, 255, 108);
+            width: 60%;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 0;
+        }
+
+        header h1 {
+            color: rgb(85, 85, 85);
+            margin-bottom: 1px;
+        }
+
+        header img {
+            width: 50px;
+            height: 50px;
+        }
+
+        nav {
+            width: 100%;
+            background-color: rgb(116, 163, 69);
+        }
+
+        ul {
+            list-style: none;
+            justify-content: center;
+            padding-inline-start: 10px;
+        }
+
+        li {
+            display: inline;
+
+        }
+
+        li a {
+            text-decoration: none;
+            color: white;
+        }
+        footer{
+            border-top: 8px solid rgb(85, 85, 85);
+            border-bottom: 8px solid rgb(85, 85, 85);
+            background-color: rgb(204, 204, 204);
+            color: rgb(117, 117, 117);
+            width: 60%;
+            padding-left: 10px;
+        }
+        footer div{
+            padding: 0;
+        }
+        footer div figure{
+        }
+        footer h4{
+            padding: 0;
+        }
+        .carretera{
+            margin: 0;
+            margin-bottom: 20px;
+        }
+        .estrella{
+            width: 30px;
+        }
+        .pers{
+            width: 80px;
+        }
+        .body{
+            margin: 0;
+            padding: 0;
+            width: 60%;
+        }
+        .body div{
+            margin-left: 0;
+            margin-right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="img/planeta.png" alt="logo">
+        <h1>ViajesOne.com</h1>
+        <nav>
+            <ul>
+                <li><sub><a href=""><u>Inicio</u> |</a></sub></li>
+                <li><sub><a href=""><u>Casas Rurales</u> |</a></sub></li>
+                <li><sub><a href=""><u>Camping</u> |</a></sub></li>
+                <li><sub><a href=""><u>Hoteles</u> |</a></sub></li>
+                <li><sub><a href=""><u>Opiniones!!</u></a></sub></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="body">
+    <figure class="carretera">
+        <img src="img/carretera.png" alt="horizonte" id="foto1">
+    </figure>
+
+    <div id="amarillo">
+        <img src="img/casa.png" alt="casa">
+        <h2>CASAS RURALES</h2>
+        <p>
+            Finca <strong>Ecológica</strong> de 15 hectáreas, cerrada con muros de piedra. Te ofrecemos alojarte en un
+            bosque de castaños y alcornoques centenarios, donde
+            pasear en privado con la familia y los amigos, en pleno Parque Natural de la Sierra de Aracena y Picos de
+            Aroche. 12 plazas en 5 dormit, 4 baños.
+        </p>
+    </div>
+    <div id="verde">
+        <img src="img/carpa-para-camping.png" alt="camping">
+        <h2>CAMPING</h2>
+        <p>
+            <strong>Parcelas</strong> de 70 m2. a 140 m2. con electricidad, agua y desagüe. Bungalows totalmente
+            equipados. Piscina. Parque infantil. Zona deportiva. Modernos
+            aseos adaptados a minusválidos. Duchas de agua caliente para mascotas. Wifi gratuita en las parcelas.
+            Recepción 24 horas y vigilancia noctuma.
+            Cantina. Lavanderfa. Lavacoches. W.C. Qulmico y desagüe para autocaravanas.
+        </p>
+    </div>
+    <div id="azul">
+        <img src="img/edificio.png" alt="edificio">
+        <h2>HOTELES</h2>
+        <p>
+            Situado en el corazón del distrito comercial de la ciudad, el <strong>Gran Hotel</strong> Lar es ideal para
+            ir por motivos de trabajo. EI Gran Hotel Lar tiene 137
+            habitaciones totalmente equipadas con las comodidades básicas como aire acondicionado, televisión por cable,
+            teléfono e Intemet. Los servicios del
+            hotel incluyen recepción las 24 horas, lavanderfa y servicio de habitaciones. Los restaurantes de la casa
+            están disponibles para los clientes que quieran
+            disfrutar de comida local o Internacional.
+        </p>
+    </div>
+</div>
+
+    <footer>
+        <h4>OPINIONES DE CLIENTES</h4>
+        <div>
+            <figure>
+                <img src="img/usuario.png" alt="usuario" class="pers">
+                <img src="img/estrella.png" alt="estrella" class="estrella">
+                <img src="img/estrella.png" alt="estrella" class="estrella">
+                <img src="img/estrella.png" alt="estrella" class="estrella">
+                <img src="img/estrella.png" alt="estrella" class="estrella">
+                <img src="img/estrella.png" alt="estrella" class="estrella">
+            </figure>
+            
+            <p>Siempre dan una respuesta, una solucion, sin tiempo de espera, y con un trato amigable. Excelente servicio.</p>
+        </div>
+        
+        <div>
+            <figure>
+                <img src="img/usuaria.png" alt="usuaria" class="pers">
+                <img src="img/estrella.png" alt="estrella" class="estrella">
+                <img src="img/estrella.png" alt="estrella" class="estrella">
+                <img src="img/estrella.png" alt="estrella" class="estrella">
+                <img src="img/estrella.png" alt="estrella" class="estrella">
+            </figure>
+            <p>Estoy muy satisfecha con sus servicios y alojamientos ofrecidos.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

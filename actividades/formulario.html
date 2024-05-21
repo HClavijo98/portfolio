@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 8</title>
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-color: white;
+        }
+
+        ul li {
+            margin: 5px;
+            list-style: none;
+        }
+
+        #datosP {
+            display: flex;
+        }
+
+        #dniL {
+            width: 20px;
+        }
+
+        #sName {
+            width: 300px;
+        }
+
+        #cll {
+            width: 60%;
+        }
+
+        .red {
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="#">
+        <h2>Datos personales</h2>
+        <div id="datosP">
+            <ul>
+                <li><label for="dniN">DNI</label>
+                    <input class="red" type="number" id="dniN" required><input type="text" id="dniL" readonly required>
+                </li>
+                <li><label for="name">Nombre</label>
+                    <input class="red" type="text" id="name" required>
+                </li>
+                <li><label for="sName">Apellidos</label>
+                    <input class="red" type="text" id="sName" required>
+                </li>
+                <li><label for="mail">Email</label>
+                    <input class="red" type="text" id="mail" required>
+                </li>
+            </ul>
+            <ul>
+                <li><label>Sexo</label></li>
+                <li><input type="radio" name="sexo">Hombre</li>
+                <li><input type="radio" name="sexo">Mujer</li>
+            </ul>
+        </div>
+        <hr>
+        <h2>Direccion</h2>
+        <div id="dir">
+            <ul>
+                <li><label for="cll">Cll/Av</label>
+                    <input class="red" type="text" id="cll">
+                </li>
+                <li><label for="pobl">Poblacion</label>
+                    <input class="red" type="text" id="pobl">
+                    <label for="prov">Provincia</label>
+                    <select class="red" id="prov" disabled required>
+                        <option value="alava">Álava</option>
+                        <option value="albacete">Albacete</option>
+                        <option value="alicante">Alicante</option>
+                        <option value="almeria">Almería</option>
+                        <option value="asturias">Asturias</option>
+                        <option value="avila">Ávila</option>
+                        <option value="badajoz">Badajoz</option>
+                        <option value="barcelona">Barcelona</option>
+                        <option value="burgos">Burgos</option>
+                        <option value="caceres">Cáceres</option>
+                        <option value="cadiz">Cádiz</option>
+                        <option value="cantabria">Cantabria</option>
+                        <option value="castellon">Castellón</option>
+                        <option value="ciudad_real">Ciudad Real</option>
+                        <option value="cordoba">Córdoba</option>
+                        <option value="cuenca">Cuenca</option>
+                        <option value="gerona">Gerona</option>
+                        <option value="granada">Granada</option>
+                        <option value="guadalajara">Guadalajara</option>
+                        <option value="guipuzcoa">Guipúzcoa</option>
+                        <option value="huelva">Huelva</option>
+                        <option value="huesca">Huesca</option>
+                        <option value="islas_baleares">Islas Baleares</option>
+                        <option value="jaen">Jaén</option>
+                        <option value="la_coruna">La Coruña</option>
+                        <option value="la_rioja">La Rioja</option>
+                        <option value="las_palmas">Las Palmas</option>
+                        <option value="leon">León</option>
+                        <option value="lleida">Lleida</option>
+                        <option value="lugo">Lugo</option>
+                        <option value="madrid">Madrid</option>
+                        <option value="malaga">Málaga</option>
+                        <option value="murcia">Murcia</option>
+                        <option value="navarra">Navarra</option>
+                        <option value="ourense">Ourense</option>
+                        <option value="palencia">Palencia</option>
+                        <option value="pontevedra">Pontevedra</option>
+                        <option value="salamanca">Salamanca</option>
+                        <option value="santa_cruz_de_tenerife">Santa Cruz de Tenerife</option>
+                        <option value="segovia">Segovia</option>
+                        <option value="sevilla">Sevilla</option>
+                        <option value="soria">Soria</option>
+                        <option value="tarragona">Tarragona</option>
+                        <option value="teruel">Teruel</option>
+                        <option value="toledo">Toledo</option>
+                        <option value="valencia">Valencia</option>
+                        <option value="valladolid">Valladolid</option>
+                        <option value="vizcaya">Vizcaya</option>
+                        <option value="zamora">Zamora</option>
+                        <option value="zaragoza">Zaragoza</option>
+                    </select>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <h2>Practica en grupo</h2>
+        <div id="pract">
+            <ul>
+                <li><label for="archivo">Selecciona un archivo:</label>
+                    <input type="file" id="archivo" name="archivo" accept=".jpg, .jpeg, .png, .gif">
+                </li>
+                <li><input type="checkbox" name="tipo" disabled>Archivo comprimido
+                    <input type="checkbox" name="tipo" disabled>Archivo encriptado
+                </li>
+                <li><label for="textA">Descripcion de la practica:</label><br>
+                    <textarea class="red" id="textA" cols="60" rows="5" required disabled></textarea>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <input type="submit" value="Enviar" id="enviar" disabled>
+    </form>
+    <div id="errores" style="width: 70%;">
+        <div id="edni"></div>
+        <div id="ename"></div>
+        <div id="esname"></div>
+        <div id="eemail"></div>
+        <div id="ecll"></div>
+        <div id="epobl"></div>
+        <div id="eprov"></div>
+        <div id="efile"></div>
+        <div id="edesc"></div>
+    </div>
+</body>
+<script>
+    function compruebaLetra() {
+        let dnil = document.getElementById('dniL');
+        let dni2 = dni.value;
+        let tabla = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E'];
+
+        if (dni2.length == 8) {
+            let modulo = dni2 % 23;
+            let letra = tabla[modulo];
+
+            dnil.value = letra;
+        }
+    }
+
+    function ableCheckbox() {
+        let div = document.getElementById('archivo');
+        let check1 = document.getElementsByName('tipo');
+        let area = document.getElementById('textA');
+
+        if (div.files.length > 0) {
+            check1[0].removeAttribute('disabled');
+            check1[1].removeAttribute('disabled');
+            area.removeAttribute('disabled');
+        } else if (div.files.length <= 0) {
+            check1[0].setAttribute('disabled', 'disabled');
+            check1[1].setAttribute('disabled', 'disabled');
+            area.setAttribute('disabled', 'disabled');
+        }
+    }
+    function limita() {
+        let elemento = document.getElementById("textA");
+        let letras = elemento.value.length;
+
+        if (letras >= 100) {
+            elemento.value = elemento.value.slice(0, 100);
+        }
+    }
+
+    function turnMayus() {
+        name.value = name.value.toUpperCase();
+    }
+    function turnMayus2() {
+        sName.value = sName.value.toUpperCase();
+    }
+    function activarProvincia() {
+        let dir = document.getElementById('cll');
+        let pob = document.getElementById('pobl');
+        let selectProv = document.getElementById('prov');
+
+        if (dir.value != "" && pob.value != "") {
+            selectProv.removeAttribute('disabled');
+        } else {
+            // Atributo i valor
+            selectProv.setAttribute('disabled', 'disabled');
+        }
+    }
+    function evitaNum() {
+        let input = name;
+        let text = input.value;
+
+        text = text.replace(/[0-9]/g, '');
+        input.value = text;
+    }
+    function evitaNum2() {
+        let input = sName;
+        let text = input.value;
+
+        text = text.replace(/[0-9]/g, '');
+        input.value = text;
+    }
+    function erroneoFinal() {
+        for (let i = 0; i < required.length; i++) {
+            if (required[i].value == '') {
+                required[i].classList.add('red');
+            } else if (required[i].value != '') {
+                required[i].classList.remove('red');
+            }
+            if (event.inputType === 'deleteContentBackward') {
+                erroneoFinal();
+            }
+        }
+    }
+    function select() {
+        prov.selectedIndex = 7;
+    }
+    function habEnviar() {
+        let contador = 0;
+        for (let i = 0; i < required.length; i++) {
+            if (required[i].classList.length == 0) {
+                contador++;
+            }
+        }
+        if (contador >= 8) {
+            document.getElementById('enviar').removeAttribute('disabled');
+        }
+    }
+    function errores() {
+        if (dni.value == '') {
+            edni.innerHTML = 'Falta llenar el campo del DNI.';
+        } else {
+            edni.innerHTML = '';
+        }
+        if (name.value == '') {
+            ename.innerHTML = 'Falta llenar el campo del nombre.';
+        } else {
+            ename.innerHTML = '';
+        }
+        if (sName.value == '') {
+            esname.innerHTML = 'Falta llenar el campo de los apellidos.';
+        } else {
+            esname.innerHTML = '';
+        }
+        if (email.value == '') {
+            eemail.innerHTML = 'Falta llenar el campo de email.';
+        } else {
+            eemail.innerHTML = '';
+        }
+        if (calle.value == '') {
+            ecll.innerHTML = 'Falta llenar el campo de calle.';
+        } else {
+            ecll.innerHTML = '';
+        }
+        if (pobl.value == '') {
+            epobl.innerHTML = 'Falta llenar el campo de poblacion.';
+        } else {
+            epobl.innerHTML = '';
+        }
+        if (prov.value == '') {
+            eprov.innerHTML = 'Falta llenar el selector de provincia.';
+        } else {
+            eprov.innerHTML = '';
+        }
+        if (archivo.files.length <= 0) {
+            efile.innerHTML = 'Falta subir un archivo.';
+        } else {
+            efile.innerHTML = '';
+        }
+        if (desc.value == '') {
+            edesc.innerHTML = 'Falta llenar el campo de descripcion.';
+        } else {
+            edesc.innerHTML = '';
+        }
+    }
+    let dni = document.getElementById('dniN');
+    let email = document.getElementById('mail');
+    let pobl = document.getElementById('pobl');
+    let calle = document.getElementById('cll');
+    let archivo = document.getElementById('archivo');
+    let desc = document.getElementById('textA');
+    let name = document.getElementById('name');
+    let sName = document.getElementById('sName');
+    let prov = document.getElementById('prov');
+    let required = [dni, name, sName, email, calle, pobl, desc, prov];
+
+    dni.addEventListener('keyup', compruebaLetra);
+    pobl.addEventListener('input', activarProvincia);
+    pobl.addEventListener('input', erroneoFinal);
+    calle.addEventListener('input', activarProvincia);
+    calle.addEventListener('input', erroneoFinal);
+    archivo.addEventListener('change', ableCheckbox);
+    desc.addEventListener('keypress', limita);
+    desc.addEventListener('input', erroneoFinal);
+    name.addEventListener('input', turnMayus);
+    name.addEventListener('input', erroneoFinal);
+    name.addEventListener('input', evitaNum);
+    sName.addEventListener('input', turnMayus2);
+    sName.addEventListener('input', erroneoFinal);
+    sName.addEventListener('input', evitaNum2);
+    dni.addEventListener('input', erroneoFinal);
+    email.addEventListener('input', erroneoFinal);
+    prov.addEventListener('change', erroneoFinal);
+    prov.addEventListener('focus', select);
+    document.addEventListener('input', habEnviar);
+    document.addEventListener('input', errores);
+
+    prov.selectedIndex = -1;
+    errores();
+</script>
+
+</html>

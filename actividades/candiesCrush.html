@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candies Crush</title>
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background-image: url('img/wallpaperCandies.png');
+            background-size: cover;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+
+        header {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            background-color: rgb(97, 42, 97);
+            margin-bottom: 30px;
+            color: rgb(255, 187, 0);
+            border-bottom: 5px solid rgb(255, 187, 0);
+        }
+
+        #board div {
+            margin: 0;
+        }
+
+        #board div img {
+            width: 50px;
+            height: 50px;
+            margin-right: 4px;
+            border-radius: 10px;
+        }
+
+        .lateral {
+            width: 200px;
+            height: 300px;
+            padding: 20px;
+            margin: 30px;
+            background-color: blueviolet;
+            border: 5px solid rgb(255, 187, 0);
+            border-radius: 25px;
+        }
+
+        .candy {
+            border: 4px solid beige;
+            cursor: pointer;
+            transition: transform 0.2s
+        }
+
+        .candy:hover {
+            transform: scale(1.5);
+        }
+
+        .selected {
+            border: 4px solid red;
+        }
+
+        .path {
+            border: 4px solid rgb(255, 187, 0);
+        }
+    </style>
+</head>
+<header>
+    <h1>CANDIES CRUSH!</h1>
+</header>
+
+<body>
+    <div id="container" class="lateral">
+        <h2>TIME:</h2>
+        <span id="time"></span>
+        <h2>Points:</h2>
+        <span id="points"></span>
+        <h2>Movements:</h2>
+        <span id="mov"></span>
+    </div>
+    <div id="board">
+
+    </div>
+    <div id="winners" class="lateral">
+        <h2>Winners:</h2>
+        <ol>
+            <li id="l1"></li>
+            <li id="l2"></li>
+            <li id="l3"></li>
+            <li id="l4"></li>
+            <li id="l5"></li>
+        </ol>
+        <button id="delete">Delete</button>
+    </div>
+</body>
+<script>
+    function printBoard() {
+        let cont = 1;
+        for (let i = 0; i < maxRows; i++) {
+            let row = document.createElement("div");
+            board.appendChild(row);
+            for (let j = 0; j < maxRows; j++) {
+                let img = document.createElement("img");
+                img.classList.add('candy');
+                img.src = 'img/c' + candies[Math.floor(Math.random() * 9)] + '.png';
+                img.id = cont;
+                row.appendChild(img);
+                cont++;
+            }
+        }
+        checkSames();
+        let candiesE = document.getElementsByTagName('img');
+        for (let candy of candiesE) {
+            candy.addEventListener("click", path);
+        }
+        points.innerHTML = po;
+        movements.innerHTML = mov;
+        timer.innerHTML = end - time + ' seconds';
+        //getDown();
+        winners();
+    }
+    function winners() {
+        let valoresGuardados = localStorage.getItem('jugadores');
+        let numeros = valoresGuardados.split(',').map(Number).filter(value => !isNaN(value));
+        let numerosOrdenados = numeros.sort((a, b) => b - a);
+        let cincoValoresAltos = numerosOrdenados.slice(0, 5);
+
+        for (let i = 1; i <= 5; i++) {
+            document.getElementById('l' + i).innerHTML = cincoValoresAltos[i - 1];
+        }
+    }
+    function checkSames() {
+        for (let i = 0; i < maxRows; i++) {
+            for (let j = 0; j < maxRows; j++) {
+                if (board.children[i].children[j].getAttribute('src') == 'img/block.png') {
+
+                } else {
+                    if ((j + 1 < maxRows) && (j - 1 >= 0)
+                        && (board.children[i].children[j].getAttribute('src') == board.children[i].children[j + 1].getAttribute('src'))
+                        && (board.children[i].children[j].getAttribute('src') == board.children[i].children[j - 1].getAttribute('src'))) {
+                        board.children[i].children[j].src = 'img/block.png';
+                        board.children[i].children[j + 1].src = 'img/block.png';
+                        board.children[i].children[j - 1].src = 'img/block.png';
+                        po += 3;
+                    }
+                    if ((i + 1 < maxRows) && (i - 1 >= 0)
+                        && (board.children[i].children[j].getAttribute('src') == board.children[i + 1].children[j].getAttribute('src'))
+                        && (board.children[i].children[j].getAttribute('src') == board.children[i - 1].children[j].getAttribute('src'))) {
+                        board.children[i].children[j].src = 'img/block.png';
+                        board.children[i + 1].children[j].src = 'img/block.png';
+                        board.children[i - 1].children[j].src = 'img/block.png';
+                        po += 3;
+                    }
+                    points.innerHTML = po;
+                }
+            }
+        }
+    }
+    function getDown() {
+        for (let i = maxRows - 1; i >= 0; i--) {
+            for (let j = maxRows - 1; j >= 0; j--) {
+                if (i + 1 < maxRows && board.children[i].children[j].getAttribute('src') !== 'img/block.png') {
+                    for (let k = i + 1; k < maxRows; k++) {
+                        if (board.children[k].children[j].getAttribute('src') === 'img/block.png') {
+                            let img = board.children[k].children[j].getAttribute('src');
+                            let img2 = board.children[i].children[j].getAttribute('src');
+                            board.children[k].children[j].src = img2;
+                            board.children[i].children[j].src = img;
+                            break; // Rompe el bucle interno después de realizar el intercambio
+                        }
+                    }
+                }
+            }
+        }
+        setTimeout(getDown,5);
+    }
+    function path(e) {
+        if (end - time > 0) {
+            quitPath();
+            if (((e.target.tagName == 'IMG')) && !(e.target.getAttribute('src') == 'img/block.png')) {
+                for (let i = 0; i < maxRows; i++) {
+                    for (let j = 0; j < maxRows; j++) {
+                        for (let k = -1; k < 2; k++) {
+                            for (let l = -1; l < 2; l++) {
+                                if ((i + k >= 0) && (i + k <= maxRows - 1) && (j + l >= 0) && (j + l <= maxRows - 1)
+                                    && (e.target.id == board.children[i].children[j].id)) {
+                                    if ((k == 0) && (l == 0)) {
+                                        board.children[i + k].children[j + l].classList.add('selected');
+                                    } else {
+                                        board.children[i + k].children[j + l].classList.add('path');
+                                        board.children[i + k].children[j + l].removeEventListener('click', path);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                let paths = document.getElementsByClassName('path');
+                for (let path of paths) {
+                    path.addEventListener('click', move);
+                }
+            }
+        } else {
+            alert('Time out!');
+            localStorage.setItem('jugadores', localStorage.getItem('jugadores') + ', ' + po);
+            location.reload();
+        }
+    }
+    function quitPath() {
+        for (let i = 0; i < maxRows; i++) {
+            for (let j = 0; j < maxRows; j++) {
+                board.children[i].children[j].classList.remove('path');
+                board.children[i].children[j].classList.remove('selected');
+                board.children[i].children[j].removeEventListener('click', move);
+                board.children[i].children[j].addEventListener('click', path);
+            }
+        }
+    }
+    function move(e) {
+        let img = e.target.getAttribute('src');
+        for (let i = 0; i < maxRows; i++) {
+            for (let j = 0; j < maxRows; j++) {
+                if (board.children[i].children[j].classList.contains('selected')) {
+                    let img2 = board.children[i].children[j].getAttribute('src');
+                    e.target.src = img2;
+                    board.children[i].children[j].src = img;
+                }
+            }
+        }
+        mov++;
+        movements.innerHTML = mov;
+        quitPath();
+        checkSames();
+    }
+    function deletePoints() {
+        localStorage.removeItem('jugadores');
+        location.reload();
+    }
+    function lessTime(){
+        time = (Date.now() / 1000) - start;
+        timer.innerHTML = (end - time).toFixed(2) + ' seconds';
+        setTimeout(lessTime,100);
+    }
+
+    let maxRows = 9;
+    let board = document.getElementById('board');
+    let candies = ['Rojo', 'Verde', 'Morado', 'Amarillo', 'Rosa', 'Marron', 'Azul', 'Rosazul', 'Naranja'];
+    let points = document.getElementById('points');
+    let movements = document.getElementById('mov');
+    let mov = 0;
+    let po = 0;
+    let start = (Date.now() / 1000);
+    let time = (Date.now() / 1000) - start;
+    let end = 60;
+    let timer = document.getElementById('time');
+    let button = document.getElementById('delete');
+    button.addEventListener('click', deletePoints);
+    
+    printBoard();
+    setTimeout(getDown,5);
+    lessTime();
+</script>
+
+</html>

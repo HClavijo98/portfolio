@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            background-color: white;
+        }
+        #lienzo {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="lienzo" width="600" height="600"></canvas>
+</body>
+<script>
+    function imprimir() {
+        img.onload = function () { //esperar a la carga de la imagen
+            //ctx.drawImage(img, 0, 0, 173, 146, 300 * i, 0, 300, 300);
+            for (let i = 0; i < buenas.length; i++) {
+                ctx.drawImage(img, i * 173, 0, 173, 146, 200 * i, 0, (lienzo.width/3)-1, (lienzo.width/3)-1);
+                ctx.drawImage(img, i * 173, 146, 173, 146, 200 * i, 200, (lienzo.width/3)-1, (lienzo.width/3)-1);
+                ctx.drawImage(img, i * 173, 292, 173, 146, 200 * i, 400, (lienzo.width/3)-1, (lienzo.width/3)-1);
+                //ctx.drawImage(img, 0, 0, 173, 146, 300 * i, 0, 300, 300);
+            }
+        }
+    }
+    function imprimir2(array) {
+        ctx.clearRect(0, 0,600, 600);
+        for (let i = 0; i < 3; i++) {
+            ctx.drawImage(img, array[i][0], array[i][1], 173, 146, i * 200, 0, (lienzo.width/3)-1, (lienzo.width/3)-1);
+            ctx.drawImage(img, array[i + 3][0], array[i + 3][1], 173, 146, i * 200, 200, (lienzo.width/3)-1, (lienzo.width/3)-1);
+            ctx.drawImage(img, array[i + 6][0], array[i + 6][1], 173, 146, i * 200, 400, (lienzo.width/3)-1, (lienzo.width/3)-1);
+        }
+    }
+    function click() {
+        const rect = lienzo.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const columnaClickeada = Math.floor(x / (anchoCelda + 1));
+        const filaClickeada = Math.floor(y / (altoCelda + 1));
+        const index = filaClickeada * numColumnas + columnaClickeada;
+
+        if (oldClick == null) {
+            oldClick = index;
+        } else {
+            let temp = buenasMezcladas[oldClick];
+            buenasMezcladas[oldClick] = buenasMezcladas[index];
+            buenasMezcladas[index] = temp
+            oldClick = null;
+            imprimir2(buenasMezcladas);
+            //victoria();
+        }
+        if (matricesIguales(buenas, buenasMezcladas)) {
+            alert('Has ganado');
+            lienzo.removeEventListener('click',click);
+        }
+    }
+    function victoria() {
+        let aciertos = 0;
+        for (let i = 0; i < buenas.length; i++) {
+            if (buenas[i][0] == buenasMezcladas[i][0] && buenas[i][1] == buenasMezcladas[i][1]) {
+                aciertos++;
+                if (aciertos == 9) {
+                    alert('Has ganado!!');
+                } else {
+                    aciertos = 0;
+                }
+            }
+        }
+    }
+    function matricesIguales(matriz1, matriz2) {
+        if (matriz1.length !== matriz2.length) return false;
+        for (let i = 0; i < matriz1.length; i++) {
+            if (matriz1[i].length !== matriz2[i].length) return false;
+            for (let j = 0; j < matriz1[i].length; j++) {
+                if (matriz1[i][j] !== matriz2[i][j]) return false;
+            }
+        }
+        return true;
+    }
+    function shuffleArray(array) {
+        let newArray = array.slice(); // Copia el array original para no modificarlo directamente
+        for (let i = newArray.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray;
+    }
+
+
+    let lienzo = document.getElementById("lienzo");
+    let ctx = lienzo.getContext("2d");
+    let buenas = [[0, 0], [173, 0], [346, 0],
+    [0, 146], [173, 146], [346, 146],
+    [0, 292], [173, 292], [346, 292]];
+    let buenasMezcladas = shuffleArray(buenas);
+    console.log(buenas);
+    console.log(buenasMezcladas);
+    let img = new Image();
+    img.src = 'ejercicios/gengar.jpg';
+    const numFilas = 3;
+    const numColumnas = 3;
+    const anchoCelda = (lienzo.width - 1) / numColumnas;
+    const altoCelda = (lienzo.height - 1) / numFilas;
+    let oldClick = null;
+
+    lienzo.addEventListener('click', click);
+
+    img.onload = function () {
+        imprimir2(buenasMezcladas);
+    }
+</script>
+
+</html>

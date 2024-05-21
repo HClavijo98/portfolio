@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta Francesa</title>
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(2, 140, 54);
+            color: white;
+        }
+        #res1{
+            width: 200px;
+        }
+        @keyframes rotar {
+            0% {
+                transform: rotate(0deg);
+                /* Rotación inicial */
+            }
+
+            100% {
+                transform: rotate(360deg);
+                /* Rotación completa */
+            }
+        }
+        figure{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        /* Estilo para el contenedor de la imagen */
+        .imagen-rotativa {
+            display: inline-block;
+            /* Para que la animación funcione */
+            animation: rotar 5s linear infinite;
+            /* Aplica la animación "rotar" durante 5 segundos en bucle */
+            width: 200px;
+            position: absolute;
+            top: 30px;
+            
+        }
+
+        select .mostrar {
+            display: inline-block;
+        }
+
+        .numeros {
+            display: none;
+        }
+        .imagenes{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <figure class="imagenes">
+        <img src="img/ruletajs.png" alt="ruleta" class="imagen-rotativa">
+        <img src="img/tablerojs.png" alt="tablero" class="tablero">
+    </figure>
+    <form action="#">
+        <table>
+            <tr>
+                <th>Apuesta</th>
+                <th>Cantidad apostada</th>
+                <th>Tipo apuesta</th>
+                <th>Numero</th>
+                <th>Resolucion</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><input type="number" name="a1" id="a1"></td>
+                <td><select id="tipo1" onchange="tipos('tipo1')">
+                        <option value="">-</option>
+                        <option value="sencilla">Sencilla</option>
+                        <option value="faltaPasa">Falta o pasa</option>
+                        <option value="parImpar">Par o impar</option>
+                        <option value="docena">Docena</option>
+                        <option value="seisena">Seisena</option>
+                        <option value="cuadro">Cuadro</option>
+                        <option value="rojoNegro">Rojo o negro</option>
+                        <option value="transversal">Transversal</option>
+                        <option value="caballo">Caballo</option>
+                        <option value="columna">Columna</option>
+                    </select></td>
+                <td>
+                    <select name="sencilla" id="sencilla" class="numeros">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                        <option value="32">32</option>
+                        <option value="33">33</option>
+                        <option value="34">34</option>
+                        <option value="35">35</option>
+                        <option value="36">36</option>
+                    </select>
+                    <select name="faltaPasa" id="faltaPasa" class="numeros">
+                        <option value="1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18">1-18</option>
+                        <option value="19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36">19-36</option>
+                    </select>
+                    <select name="parImpar" id="parImpar" class="numeros">
+                        <option value="2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36">Pares</option>
+                        <option value="1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35">Impares</option>
+                    </select>
+                    <select name="docena" id="docena" class="numeros">
+                        <option value="1,2,3,4,5,6,7,8,9,10,11,12">1-12</option>
+                        <option value="13,14,15,16,17,18,19,20,21,22,23,24">13-24</option>
+                        <option value="25,26,27,28,29,30,31,32,33,34,36">25-36</option>
+                    </select>
+                    <select name="seisena" id="seisena" class="numeros">
+                        <option value="1,2,3,4,5,6">1-6</option>
+                        <option value="6,7,8,9,10,11,12">6-12</option>
+                        <option value="13,14,15,16,17,18">13-18</option>
+                        <option value="19,20,21,22,23,24">19-24</option>
+                        <option value="25,26,27,28,29,30">25-30</option>
+                        <option value="31,32,33,34,35,36">31-36</option>
+                    </select>
+                    <select name="cuadro" id="cuadro" class="numeros">
+                        <option value="1,2,3,4">1,2,3,4</option>
+                        <option value="2,3,5,6">2,3,5,6</option>
+                        <option value="4,5,7,8">4,5,7,8</option>
+                        <option value="5,6,8,9">5,6,8,9</option>
+                        <option value="7,8,10,11">7,8,10,11</option>
+                        <option value="8,9,11,12">8,9,11,12</option>
+                        <option value="10,11,13,14">10,11,13,14</option>
+                        <option value="11,12,14,15">11,12,14,15</option>
+                        <option value="13,14,16,17">13,14,16,17</option>
+                        <option value="14,15,17,18">14,15,17,18</option>
+                        <option value="16,17,19,20">16,17,19,20</option>
+                        <option value="17,18,20,21">17,18,20,21</option>
+                        <option value="19,20,22,23">19,20,22,23</option>
+                        <option value="20,21,23,24">20,21,23,24</option>
+                        <option value="22,23,25,26">22,23,25,26</option>
+                        <option value="23,24,26,27">23,24,26,27</option>
+                        <option value="25,26,28,29">25,26,28,29</option>
+                        <option value="26,27,29,30">26,27,29,30</option>
+                        <option value="28,29,31,32">28,29,31,32</option>
+                        <option value="29,30,32,33">29,30,32,33</option>
+                        <option value="31,32,34,35">31,32,34,35</option>
+                        <option value="32,33,35,36">32,33,35,36</option>
+                    </select>
+                    <select name="rojoNegro" id="rojoNegro" class="numeros">
+                        <option value="1,3,5,7,9,12,14,16,18,19,21,22,25,27,30,32,34,36">Rojo</option>
+                        <option value="2,4,6,8,10,11,13,15,17,20,23,24,26,28,29,31,33,35">Negro</option>
+                    </select>
+                    <select name="transversal" id="transversal" class="numeros">
+                        <option value="1,2,3">1,2,3</option>
+                        <option value="4,5,6">4,5,6</option>
+                        <option value="7,8,9">7,8,9</option>
+                        <option value="10,11,12">10,11,12</option>
+                        <option value="13,14,15">13,14,15</option>
+                        <option value="16,17,18">16,17,18</option>
+                        <option value="19,20,21">19,20,21</option>
+                        <option value="22,23,24">22,23,24</option>
+                        <option value="25,26,27">25,26,27</option>
+                        <option value="28,29,30">28,29,30</option>
+                        <option value="31,32,33">31,32,33</option>
+                        <option value="34,35,36">34,35,36</option>
+                    </select>
+                    <select name="caballo" id="caballo" class="numeros">
+                        <option value="1,2">1,2</option>
+                        <option value="2,3">2,3</option>
+                        <option value="3,4">3,4</option>
+                        <option value="4,5">4,5</option>
+                        <option value="5,6">5,6</option>
+                        <option value="6,7">6,7</option>
+                        <option value="7,8">7,8</option>
+                        <option value="8,9">8,9</option>
+                        <option value="9,10">9,10</option>
+                        <option value="10,11">10,11</option>
+                        <option value="11,12">11,12</option>
+                        <option value="12,13">12,13</option>
+                        <option value="13,14">13,14</option>
+                        <option value="14,15">14,15</option>
+                        <option value="15,16">15,16</option>
+                        <option value="16,17">16,17</option>
+                        <option value="17,18">17,18</option>
+                        <option value="18,19">18,19</option>
+                        <option value="19,20">19,20</option>
+                        <option value="20,21">20,21</option>
+                        <option value="21,22">21,22</option>
+                        <option value="22,23">22,23</option>
+                        <option value="23,24">23,24</option>
+                        <option value="24,25">24,25</option>
+                        <option value="25,26">25,26</option>
+                        <option value="26,27">26,27</option>
+                        <option value="27,28">27,28</option>
+                        <option value="28,29">28,29</option>
+                        <option value="29,30">29,30</option>
+                        <option value="30,31">30,31</option>
+                        <option value="31,32">31,32</option>
+                        <option value="32,33">32,33</option>
+                        <option value="33,34">33,34</option>
+                        <option value="34,35">34,35</option>
+                        <option value="35,36">35,36</option>
+                    </select>
+                    <select name="columna" id="columna" class="numeros">
+                        <option value="1,4,7,10,13,16,19,22,25,28,31,34">1</option>
+                        <option value="2,5,8,11,14,17,20,23,26,29,32,35">2</option>
+                        <option value="3,6,9,12,15,18,21,24,27,30,33,36">3</option>
+                    </select>
+                </td>
+                <td id="res1"></td>
+            </tr>
+            
+        </table>
+        <input type="button" value="Apostar" onclick="resolver('tipo1')">
+    </form>
+</body>
+<script>
+    function tipos(tipo) {
+        let tipoActual = document.getElementById(tipo).value;
+        let tipos = ['sencilla', 'faltaPasa', 'parImpar', 'docena',
+            'seisena', 'cuadro', 'rojoNegro', 'transversal', 'caballo', 'columna'];
+
+
+        for (var i = 0; i < tipos.length; i++) {
+            let inputModificar = document.getElementById(tipos[i]);
+            if (tipoActual == tipos[i]) {
+                inputModificar.classList.add('mostrar');
+                inputModificar.classList.remove('numeros');
+            } else {
+                inputModificar.classList.add('numeros');
+            }
+        }
+    }
+    function resolver(a1) {
+        let random = Math.floor(Math.random()*37);
+        let tipos = ['sencilla', 'faltaPasa', 'parImpar', 'docena',
+            'seisena', 'cuadro', 'rojoNegro', 'transversal', 'caballo', 'columna'];
+
+        let tipo1 = document.getElementById(a1).value;
+        let dinero = document.getElementById('a1').value;
+
+        const select1 = document.querySelector('select[name="' + tipo1 + '"]');
+        const option1 = select1.options[select1.selectedIndex];
+        const numeros1 = option1.value.split(',');
+        console.log(numeros1);
+        console.log(tipo1);
+        for (let i = 0; i < numeros1.length; i++) {
+            if (random == numeros1[i]) {
+                if (tipo1 == tipos[0]) {
+                    dinero = dinero * 36;
+                    document.getElementById("res1").textContent = "Has ganado $" + dinero + ", el numero era: " + random;
+                    break;
+                } else if (tipo1 == tipos[1]) {
+                    dinero = dinero * 2;
+                    document.getElementById("res1").textContent = "Has ganado $" + dinero + ", el numero era: " + random;
+                    break;
+                } else if (tipo1 == tipos[2]) {
+                    dinero = dinero * 2;
+                    document.getElementById("res1").textContent = "Has ganado $" + dinero + ", el numero era: " + random;
+                    break;
+                } else if (tipo1 == tipos[3]) {
+                    dinero = dinero * 3;
+                    document.getElementById("res1").textContent = "Has ganado $" + dinero + ", el numero era: " + random;
+                    break;
+                } else if (tipo1 == tipos[4]) {
+                    dinero = dinero * 6;
+                    document.getElementById("res1").textContent = "Has ganado $" + dinero + ", el numero era: " + random;
+                    break;
+                } else if (tipo1 == tipos[5]) {
+                    dinero = dinero * 9;
+                    document.getElementById("res1").textContent = "Has ganado $" + dinero + ", el numero era: " + random;
+                    break;
+                } else if (tipo1 == tipos[6]) {
+                    dinero = dinero * 2;
+                    document.getElementById("res1").textContent = "Has ganado $" + dinero + ", el numero era: " + random;
+                    break;
+                } else if (tipo1 == tipos[7]) {
+                    dinero = dinero * 12;
+                    document.getElementById("res1").textContent = "Has ganado $" + dinero + ", el numero era: " + random;
+                    break;
+                } else if (tipo1 == tipos[8]) {
+                    dinero = dinero * 18;
+                    document.getElementById("res1").textContent = "Has ganado $" + dinero + ", el numero era: " + random;
+                    break;
+                } else if (tipo1 == tipos[9]) {
+                    dinero = dinero * 3;
+                    document.getElementById("res1").textContent = "Has ganado $" + dinero + ", el numero era: " + random;
+                    break;
+                }
+            } else{
+                document.getElementById("res1").textContent = "Has perdido, el numero era: " + random;
+            }
+        }
+    }
+</script>
+
+</html>

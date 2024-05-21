@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>Exercici 2</title>
+    <style>
+        body{
+            background-color: rgb(26, 26, 61);
+            color: white;
+        }
+        img {
+            width: 150px;
+            border-radius: 10px;
+            border: 3px solid white;
+        }
+        img:hover{
+            border: 5px solid #007BFF;
+        }
+
+        .colaborador {
+            display: relative;
+            width: 100vh;
+        }
+
+        .bocadillo {
+            position: absolute;
+            left: 180px;
+            border-radius: 10px;
+            width: 300px;
+            background-color: rgba(94, 94, 189, 0.3);
+            display: none;
+        }
+
+        .curr {
+            width: 800px;
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 200px;
+            padding: 20px;
+            border-radius: 25px;
+            background-color: rgba(175, 175, 208, 0.3);
+        }
+
+        header {
+            text-align: center;
+        }
+
+        h1,
+        h2 {
+            color: #007BFF;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .info div {
+            flex: 1;
+        }
+
+        .experience {
+            margin-bottom: 20px;
+        }
+
+         h3 {
+            color: #007BFF;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="colaborador">
+        <img src="img/carnet1.png" alt="foto jeje">
+        <p class="bocadillo">
+            JUAN <br>
+            Diseñador, encargado de la parte visual de la pagina web.
+        </p>
+        <div class="curr">
+            <h1>JUAN</h1>
+            <div class="info">
+                <div>
+                    <strong>Email:</strong> juan@example.com
+                </div>
+                <div>
+                    <strong>Teléfono:</strong> (123) 456-7890
+                </div>
+                <div>
+                    <strong>LinkedIn:</strong> linkedin.com/in/juan
+                </div>
+                <div>
+                    <strong>GitHub:</strong> github.com/juan
+                </div>
+            </div>
+
+            <div class="experience">
+                <h3>Experiencia Laboral</h3>
+                <ul>
+                    <li>
+                        <strong>Diseñador Web</strong> - Empresa XYZ (Enero 2022 - Presente)
+                        <p>Trabajé en proyectos emocionantes utilizando tecnologías como HTML, CSS, y JavaScript.</p>
+                    </li>
+                    <li>
+                        <strong>Pasante de Desarrollo de Software</strong> - Otra Empresa (Mayo 2021 - Diciembre 2021)
+                        <p>Colaboré en el desarrollo de aplicaciones utilizando Java y Spring Boot.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="education">
+                <h3>Educación</h3>
+                <ul>
+                    <li>
+                        <strong>Grado en Ingeniería Informática</strong> - Universidad ABC (2018 - 2022)
+                    </li>
+                </ul>
+            </div>
+            <button>Volver</button>
+        </div>
+    </div>
+    <div class="colaborador">
+        <img src="img/carnet2.png" alt="foto jeje">
+        <p class="bocadillo">
+            MARIA <br>
+            Desarrollo, encargado de la base de datos de la pagina web.
+        </p>
+        <div class="curr">
+            <h1>MARIA</h1>
+            <div class="info">
+                <div>
+                    <strong>Email:</strong> correo@example.com
+                </div>
+                <div>
+                    <strong>Teléfono:</strong> (123) 456-7890
+                </div>
+                <div>
+                    <strong>LinkedIn:</strong> linkedin.com/in/usuario
+                </div>
+                <div>
+                    <strong>GitHub:</strong> github.com/usuario
+                </div>
+            </div>
+
+            <div class="experience">
+                <h3>Experiencia Laboral</h3>
+                <ul>
+                    <li>
+                        <strong>Desarrollador Web</strong> - Empresa XYZ (Enero 2022 - Presente)
+                        <p>Trabajé en proyectos emocionantes utilizando tecnologías como HTML, CSS, y JavaScript.</p>
+                    </li>
+                    <li>
+                        <strong>Pasante de Desarrollo de Software</strong> - Otra Empresa (Mayo 2021 - Diciembre 2021)
+                        <p>Colaboré en el desarrollo de aplicaciones utilizando Java y Spring Boot.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="education">
+                <h3>Educación</h3>
+                <ul>
+                    <li>
+                        <strong>Grado en Ingeniería Informática</strong> - Universidad ABC (2018 - 2022)
+                    </li>
+                </ul>
+            </div>
+            <button>Volver</button>
+        </div>
+    </div>
+    <div class="colaborador">
+        <img src="img/carnet3.png" alt="foto jeje">
+        <p class="bocadillo">
+            OLIVER <br>
+            Desarrollo, encargado de la parte logica de la pagina web.
+        </p>
+        <div class="curr">
+            <h1>OLIVER</h1>
+            <div class="info">
+                <div>
+                    <strong>Email:</strong> correo@example.com
+                </div>
+                <div>
+                    <strong>Teléfono:</strong> (123) 456-7890
+                </div>
+                <div>
+                    <strong>LinkedIn:</strong> linkedin.com/in/usuario
+                </div>
+                <div>
+                    <strong>GitHub:</strong> github.com/usuario
+                </div>
+            </div>
+
+            <div class="experience">
+                <h3>Experiencia Laboral</h3>
+                <ul>
+                    <li>
+                        <strong>Desarrollador Web</strong> - Empresa XYZ (Enero 2022 - Presente)
+                        <p>Trabajé en proyectos emocionantes utilizando tecnologías como HTML, CSS, y JavaScript.</p>
+                    </li>
+                    <li>
+                        <strong>Pasante de Desarrollo de Software</strong> - Otra Empresa (Mayo 2021 - Diciembre 2021)
+                        <p>Colaboré en el desarrollo de aplicaciones utilizando Java y Spring Boot.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="education">
+                <h3>Educación</h3>
+                <ul>
+                    <li>
+                        <strong>Grado en Ingeniería Informática</strong> - Universidad ABC (2018 - 2022)
+                    </li>
+                </ul>
+            </div>
+            <button>Volver</button>
+        </div>
+    </div>
+    <div class="colaborador">
+        <img src="img/carnet4.png" alt="foto jeje">
+        <p class="bocadillo">
+            MAURICIO <br>
+            Desarrollo, encargado de la union con la base de datos de la pagina web.
+        </p>
+        <div class="curr">
+            <h1>MAURICIO</h1>
+            <div class="info">
+                <div>
+                    <strong>Email:</strong> correo@example.com
+                </div>
+                <div>
+                    <strong>Teléfono:</strong> (123) 456-7890
+                </div>
+                <div>
+                    <strong>LinkedIn:</strong> linkedin.com/in/usuario
+                </div>
+                <div>
+                    <strong>GitHub:</strong> github.com/usuario
+                </div>
+            </div>
+
+            <div class="experience">
+                <h3>Experiencia Laboral</h3>
+                <ul>
+                    <li>
+                        <strong>Desarrollador Web</strong> - Empresa XYZ (Enero 2022 - Presente)
+                        <p>Trabajé en proyectos emocionantes utilizando tecnologías como HTML, CSS, y JavaScript.</p>
+                    </li>
+                    <li>
+                        <strong>Pasante de Desarrollo de Software</strong> - Otra Empresa (Mayo 2021 - Diciembre 2021)
+                        <p>Colaboré en el desarrollo de aplicaciones utilizando Java y Spring Boot.</p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="education">
+                <h3>Educación</h3>
+                <ul>
+                    <li>
+                        <strong>Grado en Ingeniería Informática</strong> - Universidad ABC (2018 - 2022)
+                    </li>
+                </ul>
+            </div>
+            <button>Volver</button>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+
+        $('img').mouseenter(function () {
+            $(this).siblings('p').fadeIn();
+        });
+        $('img').mouseleave(function () {
+            $(this).siblings('p').fadeOut();
+        });
+        $('img').click(function () {
+            $('.colaborador').not(this.parentNode).hide();
+            //$(this.parentNode).show();
+            $(this).siblings('div').fadeIn();
+        });
+        $('button').click(function () {
+            $('.curr').hide();
+            $('.colaborador').show();
+        });
+    })
+</script>
+
+</html>

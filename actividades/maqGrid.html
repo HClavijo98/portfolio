@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 700px;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+        }
+        .container {
+            width: 50%;
+            height: 500px;
+            display: grid;
+            grid-template: 10% 1fr 10%/1fr 1fr 1fr 1fr 1fr 1fr;
+        }
+
+        .container div {
+
+            border: 5px solid black;
+            padding: 20px;
+
+        }
+
+        .uno {
+            background-color: red;
+        }
+
+        .dos {
+            grid-column: 2/4;
+            grid-row: 1/4;
+            background-color: red;
+        }
+
+        .tres {
+            background-color: blue;
+            grid-column: 4/7;
+        }
+
+        .cuatro {
+            background-color: yellow;
+            grid-row: 2/4;
+        }
+
+        .cinco {
+            grid-column: 4/7;
+            grid-row: 2/3;
+            text-align: right;
+        }
+
+        .seis {}
+
+        .siete {
+            background-color: blue;
+        }
+
+        .ocho {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="uno"></div>
+        <div class="dos"></div>
+        <div class="tres"></div>
+        <div class="cuatro"></div>
+        <div class="cinco">
+            <h1>Piet</h1>
+            <h1>Mondrian</h1>
+            <p>
+                Cart de Mondrian era altament utópic i estava preocupat per la
+                recerca de valors i estética universals. EI 1914 va proclamar: "Cart
+                és superior a la realitat i no té cap relació directa amb la realitat.
+                Per acostar-se a respiritual en rart, s'utilitzarà la realitat el menvs
+                possible, perqué la realitat s'oposa a l'espiritual. Ens trobem en la
+                preséncia d'un art abstracte. L'art hauria destar per sobre de la
+                realitat. en cas contrari no tindria cap valor per a l'homet EI seu
+                art. perô, sempre va romandre arrelat a la natura.
+            </p>
+        </div>
+        <div class="seis"></div>
+        <div class="siete"></div>
+        <div class="ocho"></div>
+    </div>
+</body>
+
+</html>

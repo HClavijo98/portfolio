@@ -1,0 +1,61 @@
+body, header, footer {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.ico {
+    width: 25px;
+}
+
+.carousel-item {
+    transition-duration: 1s;
+    /* Cambia el valor según tu preferencia (por ejemplo, 0.5s para una transición más corta) */
+}
+
+body.light-theme {
+    background-image: url('img/lightBackground.jpg');
+    background-size: cover;
+    color: black;
+}
+
+body.dark-theme {
+    background-image: url('img/darkBackground.jpg');
+    background-size: cover;
+    color: white;
+}
+
+header.light-theme, footer.light-theme {
+    background-color: #f8f9fa;
+    color: black;
+}
+
+header.dark-theme, footer.dark-theme {
+    background-color: #343a40;
+    color: white;
+}
+
+.btn-light-theme {
+    background-color: white;
+    color: black;
+    border-color: #343a40;
+}
+
+.btn-dark-theme {
+    background-color: #343a40;
+    color: white;
+    border-color: white;
+}
+
+.text-normal {
+    color: inherit;
+    /* Hereda el color del texto circundante */
+    text-decoration: none;
+    /* Quita el subrayado */
+}
+
+.text-normal:hover,
+.text-normal:focus {
+    color: inherit;
+    /* Mantiene el color en estado hover y focus */
+    text-decoration: none;
+    /* Quita el subrayado en estado hover y focus */
+}

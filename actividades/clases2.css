@@ -1,0 +1,430 @@
+#main {}
+
+.orange {
+    margin: 10px;
+}
+
+.orange div {
+    background-color: orangered;
+    margin: 2px;
+}
+
+.yellow {
+    margin: 10px;
+}
+
+.yellow div {
+    background-color: yellow;
+    margin: 2px;
+}
+
+.blue {
+    margin: 10px;
+}
+
+.blue div {
+    background-color: blue;
+    margin: 2px;
+}
+
+.grey {
+    margin: 10px;
+}
+
+.grey div {
+    background-color: grey;
+    margin: 2px;
+}
+
+.foto {
+    width: 100%;
+    padding: 0;
+}
+
+#main {
+    background-color: white;
+}
+
+body {
+    background-color: aqua;
+    padding: 5px;
+}
+
+header {
+    background-color: darkblue;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+nav {
+    background-color: gray;
+}
+
+nav img {
+    width: 30px;
+}
+
+figure {
+    padding: 0;
+}
+
+img {
+    width: 100%;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+@media only screen and (min-width: 1024px) {
+
+    /* desktop */
+    .col-1 {
+        width: 8.33%;
+    }
+
+    .col-2 {
+        width: 16.66%;
+    }
+
+    .col-3 {
+        width: 24%;
+    }
+
+    .col-4 {
+        width: 32%;
+    }
+
+    .col-5 {
+        width: 41.66%;
+    }
+
+    .col-6 {
+        width: 48%;
+    }
+
+    .col-7 {
+        width: 58.33%;
+    }
+
+    .col-8 {
+        width: 66.66%;
+    }
+
+    .col-9 {
+        width: 75%;
+    }
+
+    .col-10 {
+        width: 83.33%;
+    }
+
+    .col-11 {
+        width: 91.66%;
+    }
+
+    .col-12 {
+        width: 99%;
+    }
+
+    #main {}
+
+    .orange {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .orange div {
+        height: 80px;
+        margin: 2px;
+    }
+
+    .yellow {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .yellow div {
+        height: 200px;
+        margin: 2px;
+    }
+
+    .blue {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .blue div {
+        height: 180px;
+        margin: 2px;
+    }
+
+    .grey {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .grey div {
+        height: 100px;
+        margin: 2px;
+    }
+
+    header {
+        height: 100px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center;
+        height: 50px;
+    }
+
+    /* nav img{
+        display: block;
+    } */
+    .articulos {
+        display: flex;
+    }
+
+    .articulos div {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 3px;
+    }
+
+    #main {
+        background-color: white;
+        padding: 10px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+
+    /* For tablets: */
+    .col-s-1 {
+        width: 8.33%;
+    }
+
+    .col-s-2 {
+        width: 16.66%;
+    }
+
+    .col-s-3 {
+        width: 25%;
+    }
+
+    .col-s-4 {
+        width: 33.33%;
+    }
+
+    .col-s-5 {
+        width: 41.66%;
+    }
+
+    .col-s-6 {
+        width: 49%;
+    }
+
+    .col-s-7 {
+        width: 58.33%;
+    }
+
+    .col-s-8 {
+        width: 66.66%;
+    }
+
+    .col-s-9 {
+        width: 75%;
+    }
+
+    .col-s-10 {
+        width: 83.33%;
+    }
+
+    .col-s-11 {
+        width: 91.66%;
+    }
+
+    .col-s-12 {
+        width: 100%;
+    }
+
+    #main {
+        width: 100%;
+        padding: 0;
+    }
+
+    .orange {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .orange div {
+        height: 50px;
+        background-color: orangered;
+    }
+
+    .yellow {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .yellow div {
+        height: 150px;
+        background-color: yellow;
+    }
+
+    .blue {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .blue div {
+        height: 80px;
+        background-color: blue;
+    }
+
+    .grey {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+    }
+
+    .grey div {
+        height: 80px;
+        background-color: grey;
+    }
+
+    body {
+        padding: 0;
+    }
+
+    header {
+        height: 100px;
+        margin: 0;
+    }
+
+    nav {
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+    }
+
+    nav img {
+        display: none;
+    }
+
+    nav input {
+        height: 25px;
+    }
+
+    .main {
+        margin: 0;
+    }
+
+    .articulos div {
+        display: flex;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+
+    /* For mobile phones: */
+    [class*="col-"] {
+        width: 100%;
+    }
+
+    #main {
+        margin: 0;
+        width: 100%;
+    }
+
+    .orange {}
+
+    .orange div {
+        height: 50px;
+
+    }
+
+    .yellow {}
+
+    .yellow div {
+        height: 80px;
+
+    }
+
+    .blue {}
+
+    .blue div {
+        height: 150px;
+
+    }
+
+    .grey {}
+
+    .grey div {
+        height: 50px;
+
+    }
+
+    .articulos img {
+        display: none;
+    }
+
+    body {
+        padding: 0;
+    }
+
+    header {
+        height: 80px;
+        margin: 0;
+    }
+
+    header nav {
+        display: none;
+    }
+}
+
+/* modo claro oscuro */
+@media (prefers-color-scheme: dark) {
+    #main {
+        color: white;
+        background: black;
+    }
+    .orange div{
+        background-color: darkred;
+    }
+    .yellow div{
+        background-color: darkgoldenrod;
+    }
+    .blue div{
+        background-color: darkslateblue;
+    }
+    .grey div{
+        background-color: darkslategray;
+    }
+
+    body {
+        color: #fefefe;
+        background: #121212;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    #main {
+        color: black;
+        background: #dadada;
+    }
+
+    body {
+        color: black;
+        background: #dadada;
+    }
+}
