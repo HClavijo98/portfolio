@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moviles</title>
+    <style>
+        body{
+            display: flex;
+            flex-wrap: wrap;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        a {
+            position: absolute;
+            top: 405px;
+            left: 175px;
+            background-color: white;
+            border-radius: 100%;
+            padding: 5px;
+        }
+
+        a img {
+            width: 30px;
+            height: 30px;
+        }
+        .movil{
+            width: 300px;
+        }
+
+        .center{
+            width: 100%;
+            text-align: center;
+        }
+        .wallpaper{
+            position: absolute; 
+            left: 113px; 
+            top: 85px; 
+            width: 175px; 
+            height: 370px; 
+            border-radius: 10px;
+        }
+        .texto{
+            width: 170px;
+            height: 285px;
+            background-color: rgba(255, 255, 255, 0.5); 
+            position: absolute; 
+            top: 90px; 
+            left: 115px;
+            border-radius: 5px;
+        }
+        .mensajes{
+            overflow: auto;
+        }
+        .mensajes ul li{
+            list-style-type: none;
+            margin-left: -35px;
+        }
+    </style>
+</head>
+
+<body>
+    {foreach $moviles as $movil}
+    <div class="movil" style="position: relative;">
+        <h2 class="center">{$movil->getMarca()} - {$movil->getModelo()}</h2>
+        <img src="img/phone.jpg" alt="movil">
+        <img src="img/{$movil->getWallpaper()}" alt="wallpaper" class="wallpaper">
+        <div class="texto">
+            <div class="mensajes" style="width: 100%; height: 200px;">
+                <ul>
+                {foreach $movil->getHistorialMSG() as $mensaje}
+                    <li>{$mensaje}</li>
+                {/foreach}
+            </ul>
+            </div>
+            <form action="moviles.php" method="get">
+                <input type="hidden" name="id" value="{$movil->getId()}">
+                <textarea name="msg" id="msg" cols="20" rows="5"></textarea>
+                <input type="submit" name="enviar" id="enviar">
+            </form>
+        </div>
+        <a href="moviles.php?call&id={$movil->getId()}">
+            <img src="img/boton.png" alt="Boton de llamada">
+        </a>
+        <p class="center">Llamadas: {$movil->getMaxLlamadas()} - Datos: {$movil->getMaxDatos()}</p>
+    </div>
+    {/foreach}
+</body>
+
+</html>

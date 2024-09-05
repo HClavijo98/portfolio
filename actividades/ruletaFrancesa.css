@@ -1,0 +1,44 @@
+@keyframes rotar {
+    0% {
+        transform: rotate(0deg); /* Rotación inicial */
+    }
+    100% {
+        transform: rotate(360deg); /* Rotación completa */
+    }
+}
+/* Estilo para el contenedor de la imagen */
+.imagen-rotativa {
+    display: inline-block; /* Para que la animación funcione */
+    animation: rotar 5s linear infinite; /* Aplica la animación "rotar" durante 5 segundos en bucle */
+    width: 300px;
+}
+.tablero{
+    width: 500px;
+}
+
+body{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(2, 140, 54);
+    color: white;
+}
+.res{
+    border: 2px solid white;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
+}
+.general{
+    width: 100%;
+    display: flex;
+}
+table{
+    width: 100%;
+}
+form{
+    margin: 50px;
+}
+figure{
+    margin: 50px;
+    width: 100%;
+}

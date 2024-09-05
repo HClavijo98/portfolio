@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ruletaFrancesa.css">
+    <title>Ruleta</title>
+</head>
+<body>
+    <figure>
+        <img src="img/ruleta.png" alt="ruleta" class="imagen-rotativa">
+        <img src="img/ruletaTablero.png" alt="tablero" class="tablero">
+    </figure>
+    <form action="ruletaFrancesa.php" method="get">
+        <table>
+            <tr>
+                <th>Apuesta</th><th>Cantidad apostada</th><th>Tipo apuesta</th><th>Numero</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td><input type="number" name="a1"></td>
+                <td><select name="tipo1">
+                    <option value="sencilla">Sencilla</option>
+                    <option value="falta/pasa">Falta o pasa</option>
+                    <option value="par/impar">Par o impar</option>
+                    <option value="docena">Docena</option>
+                    <option value="seisena">Seisena</option>
+                    <option value="cuadro">Cuadro</option>
+                    <option value="rojo/negro">Rojo o negro</option>
+                    <option value="transversal">Transversal</option>
+                    <option value="caballo">Caballo</option>
+                    <option value="columna">Columna</option>
+                </select></td>
+                <td><input type="text" name="num1"></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><input type="number" name="a2"></td>
+                <td><select name="tipo2">
+                    <option value="sencilla">Sencilla</option>
+                    <option value="falta/pasa">Falta o pasa</option>
+                    <option value="par/impar">Par o impar</option>
+                    <option value="docena">Docena</option>
+                    <option value="seisena">Seisena</option>
+                    <option value="cuadro">Cuadro</option>
+                    <option value="rojo/negro">Rojo o negro</option>
+                    <option value="transversal">Transversal</option>
+                    <option value="caballo">Caballo</option>
+                    <option value="columna">Columna</option>
+                </select></td>
+                <td><input type="text" name="num2"></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><input type="number" name="a3"></td>
+                <td><select name="tipo3">
+                    <option value="sencilla">Sencilla</option>
+                    <option value="falta/pasa">Falta o pasa</option>
+                    <option value="par/impar">Par o impar</option>
+                    <option value="docena">Docena</option>
+                    <option value="seisena">Seisena</option>
+                    <option value="cuadro">Cuadro</option>
+                    <option value="rojo/negro">Rojo o negro</option>
+                    <option value="transversal">Transversal</option>
+                    <option value="caballo">Caballo</option>
+                    <option value="columna">Columna</option>
+                </select></td>
+                <td><input type="text" name="num3"></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><input type="number" name="a4"></td>
+                <td><select name="tipo4">
+                    <option value="sencilla">Sencilla</option>
+                    <option value="falta/pasa">Falta o pasa</option>
+                    <option value="par/impar">Par o impar</option>
+                    <option value="docena">Docena</option>
+                    <option value="seisena">Seisena</option>
+                    <option value="cuadro">Cuadro</option>
+                    <option value="rojo/negro">Rojo o negro</option>
+                    <option value="transversal">Transversal</option>
+                    <option value="caballo">Caballo</option>
+                    <option value="columna">Columna</option>
+                </select></td>
+                <td><input type="text" name="num4"></td>
+            </tr>
+        </table>
+        <input type="submit">
+    </form>
+</body>
+</html>
