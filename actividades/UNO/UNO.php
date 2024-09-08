@@ -209,7 +209,7 @@ session_start();
     $ultima = $_SESSION['baraja'][count($_SESSION['baraja']) - 1];
     $ultima->pintaCarta();
     echo '<a href=UNO.php?carta=coger name= "carta">
-    <img src="img/atras.jpg" class="carta" style="border-radius: 10px;">
+    <img src="baraja_uno/atras.jpg" class="carta" style="border-radius: 10px;">
     </a>';
     echo '<a href=UNO.php?pasa name="pasa" class="boton">PASAR<br>TURNO</a></div>
     </div>';
