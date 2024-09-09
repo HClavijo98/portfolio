@@ -123,12 +123,17 @@
     }
     function winners() {
         let valoresGuardados = localStorage.getItem('jugadores');
-        let numeros = valoresGuardados.split(',').map(Number).filter(value => !isNaN(value));
-        let numerosOrdenados = numeros.sort((a, b) => b - a);
-        let cincoValoresAltos = numerosOrdenados.slice(0, 5);
 
-        for (let i = 1; i <= 5; i++) {
-            document.getElementById('l' + i).innerHTML = cincoValoresAltos[i - 1];
+        if (valoresGuardados !== null) {
+            let numeros = valoresGuardados.split(',').map(Number).filter(value => !isNaN(value));
+            let numerosOrdenados = numeros.sort((a, b) => b - a);
+            let cincoValoresAltos = numerosOrdenados.slice(0, 5);
+
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById('l' + i).innerHTML = cincoValoresAltos[i - 1];
+            }
+        } else {
+            console.log('No hay valores almacenados en "jugadores".');
         }
     }
     function checkSames() {
@@ -174,7 +179,7 @@
                 }
             }
         }
-        setTimeout(getDown,5);
+        setTimeout(getDown, 5);
     }
     function path(e) {
         if (end - time > 0) {
@@ -238,10 +243,10 @@
         localStorage.removeItem('jugadores');
         location.reload();
     }
-    function lessTime(){
+    function lessTime() {
         time = (Date.now() / 1000) - start;
         timer.innerHTML = (end - time).toFixed(2) + ' seconds';
-        setTimeout(lessTime,100);
+        setTimeout(lessTime, 100);
     }
 
     let maxRows = 9;
@@ -257,9 +262,9 @@
     let timer = document.getElementById('time');
     let button = document.getElementById('delete');
     button.addEventListener('click', deletePoints);
-    
+
     printBoard();
-    setTimeout(getDown,5);
+    setTimeout(getDown, 5);
     lessTime();
 </script>
 
