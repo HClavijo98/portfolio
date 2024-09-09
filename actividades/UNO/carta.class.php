@@ -10,7 +10,7 @@ class carta{
    }
 
    function pintaCarta(){
-    echo '<img src="img/'.$this->numero.'_'.$this->palo.'.png" class="carta">';
+    echo '<img src="baraja_uno/'.$this->numero.'_'.$this->palo.'.png" class="carta">';
     // echo '<a href=UNO.php?carta='.$this->numero.'-'.$this->palo.' name= "carta">
     // <img src="baraja_uno/'.$this->numero.'_'.$this->palo.'.png" class="carta">
     // </a>';
